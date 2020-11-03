@@ -14,18 +14,27 @@ namespace MyBanker
             Customer customer = new Customer("Dan", new DateTime(1976, 04, 25));
             Account account = new Account();
 
+            Customer customer1 = new Customer("Tim", new DateTime(2006, 05, 12));
+            Account account1 = new Account();
+
             customer.Accounts.Add(account);
+            customer1.Accounts.Add(account1);
 
             List<Card> cards = new List<Card>();
 
             cards.Add(CardFactory.Factory.CreateCard("VISA", customer));
+            cards.Add(CardFactory.Factory.CreateCard("MasterCard", customer));
+            cards.Add(CardFactory.Factory.CreateCard("Maestro", customer));
+
+
+            cards.Add(CardFactory.Factory.CreateCard("VISAElectron", customer1));
+            cards.Add(CardFactory.Factory.CreateCard("DebitCard", customer1));
 
             foreach (var item in cards)
             {
-                Console.WriteLine(((VISA)item).ExpireDate);
+                if(item != null)
                 Console.WriteLine(item.ToString());
             }
-
         }
     }
 }

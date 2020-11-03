@@ -15,14 +15,20 @@ namespace MyBanker.Cards
 
         public DateTime ExpireDate { get; private set; }
 
+        /// <summary>
+        /// This method makes it so that the customer can overdraft the account 
+        /// </summary>
         public void OverDraft()
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Makes sure that all information is displayed on the ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return $"Owner  {CustomerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}\nExpireDate  {ExpireDate}";
+            return $"Owner {CustomerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}\nExpireDate {ExpireDate}";
         }
     }
 }

@@ -26,9 +26,13 @@ namespace MyBanker.Cards
             AccountNumber = accountNumber;
         }
 
+        /// <summary>
+        /// Makes sure that all information is displayed on the ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return $"Owner = {CustomerName}\n Card Nr. {Number}\nAccount Nr. {AccountNumber}";
+            return $"Owner = {CustomerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}";
         }
     }
 }
