@@ -13,11 +13,22 @@ namespace MyBanker.Cards
         public string Number { get; private set; }
         public string AccountNumber { get; set; }
 
-        public Card(string name, string cardType, int numberOfDigits, string accountNumber)
+        public Card(string name, string cardType, string accountNumber)
         {
             CustomerName = name;
-            Number = NumberGenerator.GenerateNumber(prefix: PreFixGenerator.GetPrefix(cardType), numberOfDigits);
+
+            if (cardType != "Maestro")
+                Number = NumberGenerator.GenerateCardNumber(cardType, 16);
+
+            else
+                Number = NumberGenerator.GenerateCardNumber(cardType, 19);
+
             AccountNumber = accountNumber;
+        }
+
+        public override string ToString()
+        {
+            return $"Owner = {CustomerName}\n Card Nr. {Number}\nAccount Nr. {AccountNumber}";
         }
     }
 }

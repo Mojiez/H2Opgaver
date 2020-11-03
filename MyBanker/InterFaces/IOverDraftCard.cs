@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MyBanker.InterFaces
 {
-    interface IMasterCard
+    interface IOverDraftCard
     {
-        public void OverDraft(int amount);
+        public void OverDraft();
     }
 }

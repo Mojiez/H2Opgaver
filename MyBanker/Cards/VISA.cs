@@ -1,30 +1,28 @@
 ﻿using MyBanker.Accounts;
+using MyBanker.InterFaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MyBanker.Cards
 {
-    public class VISA : Card
+    public class VISA : Card, IOverDraftCard
     {
-        private int widthdrawAmount = 25000;
-        private int month = DateTime.Now.Month;
-
-        public VISA(string name, int prefix, string accountNumber) : base(name, prefix, accountNumber)
+        public VISA(string name, string cardType, string accountNumber) : base(name, cardType, accountNumber)
         {
             ExpireDate = DateTime.Now.AddYears(5);
         }
 
         public DateTime ExpireDate { get; private set; }
 
-        public override void Deposit(int amount, Account account)
+        public void OverDraft()
         {
-            account.AccountBalance += amount;
+            throw new NotImplementedException();
         }
 
-        public override int WidthDraw(int amount, Account account)
+        public override string ToString()
         {
-            
+            return $"Owner  {CustomerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}\nExpireDate  {ExpireDate}";
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MyBanker.Accounts
 
         public Account()
         {
-            Number = NumberGenerator.GenerateNumber(3520, 14);   
+            Number = NumberGenerator.GenerateAccountNumber();   
         }
     }
 }
