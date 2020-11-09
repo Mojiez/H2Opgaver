@@ -11,14 +11,5 @@ namespace KaffeMaskinen.DataClasses
         {
         }
 
-        public void EmptyOut()
-        {
-            Quantity = 0;
-        }
-
-        public void FillUp(int quantity)
-        {
-            Quantity = quantity;
-        }
     }
 }

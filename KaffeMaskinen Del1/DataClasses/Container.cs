@@ -10,7 +10,6 @@ namespace KaffeMaskinen.DataClasses
         private string contentType;
         private int quantity;
 
-
         public int Quantity
         {
             get { return quantity; }
@@ -33,6 +32,16 @@ namespace KaffeMaskinen.DataClasses
         {
             Size = size;
             ContentType = contentType;    
+        }
+
+        public void FillUp(int quantity)
+        {
+            Quantity = quantity;
+        }
+
+        public void EmptyOut()
+        {
+            Quantity = 0;
         }
     }
 }

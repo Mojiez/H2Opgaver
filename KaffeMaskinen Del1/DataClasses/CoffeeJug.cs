@@ -5,20 +5,11 @@ using System.Text;
 
 namespace KaffeMaskinen.DataClasses
 {
-    public class CoffeeJug : Container, IHandle
+    public class CoffeeJug : Container
     {
         public CoffeeJug(int size, string contentType) : base(size, contentType)
         {
         }
 
-        public void EmptyOut()
-        {
-            Quantity = 0;
-        }
-
-        public void FillUp(int quantity)
-        {
-            Quantity = quantity;
-        }
     }
 }
