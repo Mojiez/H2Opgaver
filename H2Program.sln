@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBanker", "MyBanker\MyBank
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InheritanceGeometrics", "..\..\..\source\repos\SkoleOpgaver\InheritanceGeometrics\InheritanceGeometrics.csproj", "{B986E945-1A53-44D7-A0CC-E23F96C32454}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jacob", "Jacob\Jacob.csproj", "{CBB962A1-09F4-41B2-A30B-D0A93FB2FAF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B986E945-1A53-44D7-A0CC-E23F96C32454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B986E945-1A53-44D7-A0CC-E23F96C32454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B986E945-1A53-44D7-A0CC-E23F96C32454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB962A1-09F4-41B2-A30B-D0A93FB2FAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB962A1-09F4-41B2-A30B-D0A93FB2FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB962A1-09F4-41B2-A30B-D0A93FB2FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB962A1-09F4-41B2-A30B-D0A93FB2FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
