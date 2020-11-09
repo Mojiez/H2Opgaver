@@ -8,6 +8,8 @@
             if (isHTML)
             {
                 m.Body = Converter.ConvertBodyToHTML(m.Body);
+                //her implementeres alt koden til at sende via Smtp
+
             }
         }
 
@@ -16,6 +18,7 @@
             if (isHTML)
             {
                 m.Body = Converter.ConvertBodyToHTML(m.Body);
+                //her implementeres alt koden til at sende via Smtp
             }
         }
     }
