@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jacob.Managers
 {
-    class VMessage : SmtpMessageManager
+    public class VMessageManager : SmtpMessageManager
     {
         public override void sendMessage(Message m, bool isHTML)
         {

@@ -1,11 +1,6 @@
-﻿using Jacob.MessageTypes;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Jacob.Managers
+﻿namespace Jacob.Managers
 {
-    class SmtpMessageManager
+    public class SmtpMessageManager
     {
         public virtual void sendMessage(Message m, bool isHTML)
         {
