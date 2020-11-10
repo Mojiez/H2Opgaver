@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jacob", "Jacob\Jacob.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaffeMaskinen", "KaffeMaskinen Del1\KaffeMaskinen.csproj", "{5D349B23-62B5-492F-BBD8-206D61A0BB06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdsFlyingAround_App", "BirdsFlyingAround_App\BirdsFlyingAround_App.csproj", "{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdsFlyingAround_App", "BirdsFlyingAround_App\BirdsFlyingAround_App.csproj", "{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HjælpLone", "HjælpLone\HjælpLone.csproj", "{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
