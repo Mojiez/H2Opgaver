@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BirdsFlyingAround_App.Date_Classes
 {
-    class Pinguin : Bird, IAltitude
+    class Pinguin : Bird, IFly
     {
         public override void Draw()
         {

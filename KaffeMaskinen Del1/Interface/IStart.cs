@@ -4,11 +4,8 @@ using System.Text;
 
 namespace KaffeMaskinen.Interface
 {
-    //This handles the machines main function
-    interface IMachine
+    interface IStart
     {
-        public void TurnOn();
-        public void TurnOff();
         public void Start();
     }
 }

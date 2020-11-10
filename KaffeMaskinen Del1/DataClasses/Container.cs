@@ -34,14 +34,16 @@ namespace KaffeMaskinen.DataClasses
             ContentType = contentType;    
         }
 
-        public void FillUp(int quantity)
+        public void FillUp(int quantity, string contentType)
         {
             Quantity = quantity;
+            ContentType = contentType;
         }
 
         public void EmptyOut()
         {
             Quantity = 0;
+            ContentType = "";
         }
     }
 }

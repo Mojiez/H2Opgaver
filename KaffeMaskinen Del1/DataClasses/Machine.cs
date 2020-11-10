@@ -43,13 +43,22 @@ namespace KaffeMaskinen.DataClasses
             set { weight = value; }
         }
 
+        private bool turnedOn;
+
+        public bool TurnedOn
+        {
+            get { return turnedOn; }
+            set { turnedOn = value; }
+        }
+
         public Machine(string model, float height, float width, float depth, float weight)
         {
             Model = model;
             Height = height;
             Width = width;
             Depth = depth;
-            Weight = weight; 
+            Weight = weight;
+            TurnedOn = false;
         }
     }
 }

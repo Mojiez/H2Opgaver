@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BirdsFlyingAround_App.Interfaces
 {
-    interface IAltitude 
+    interface IFly 
     {
         public void SetAltitude(double longitude, double latitude); 
     }
