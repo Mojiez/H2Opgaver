@@ -10,6 +10,5 @@ namespace KaffeMaskinen.DataClasses
         public FilterCup(int size, string contentType = "CoffeePowder") : base(size, contentType)
         {
         }
-
     }
 }

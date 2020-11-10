@@ -6,15 +6,8 @@ using System.Text;
 namespace KaffeMaskinen.DataClasses
 {
     //This class is responsible for 
-    class CoffeeMachine : Machine, IMachine
+    class CoffeeMachine : Machine, IPower
     {
-        private bool turnedOn;
-        public bool TurnedOn
-        {
-            get { return turnedOn; }
-            set { turnedOn = value; }
-        }
-
         private CoffeeJug coffeeJug;
         public CoffeeJug CoffeeJug
         {
@@ -36,21 +29,33 @@ namespace KaffeMaskinen.DataClasses
             set { waterJug = value; }
         }
 
-        public CoffeeMachine(string model, float height, float width, float depth, float weight, WaterJug waterJug, CoffeeJug coffeeJug, FilterCup filterCup) : base(model, height, width, depth, weight)
+        private Grinder grinder;
+
+        public Grinder Grinder
+        {
+            get { return grinder; }
+            set { grinder = value; }
+        }
+
+        public CoffeeMachine(string model, float height, float width, float depth, float weight, WaterJug waterJug, CoffeeJug coffeeJug, FilterCup filterCup, Grinder grinder) : base(model, height, width, depth, weight)
         {
             WaterJug = waterJug;
             CoffeeJug = coffeeJug;
             FilterCup = filterCup;
+            Grinder = grinder;
         }
         /// <summary>
         /// This method starts the coffeemachine if its turned on!
         /// </summary>
-        public void Start()
+        public void Start(int ingredient)
         {
-            if(TurnedOn == true)
+            if (TurnedOn == true)
             {
-                CoffeeJug.FillUp(WaterJug.Quantity);
+                Grinder.TurnOn();
+                FilterCup.ContentType = Grinder.Grind(ingredient).ToString();
+                CoffeeJug.FillUp(WaterJug.Quantity, FilterCup.ContentType);
             }
+            Grinder.TurnOff();
         }
         /// <summary>
         /// Turns on the power 
