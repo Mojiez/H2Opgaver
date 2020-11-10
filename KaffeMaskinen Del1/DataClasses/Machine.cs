@@ -37,7 +37,6 @@ namespace KaffeMaskinen.DataClasses
             set { depth = value; }
         }
 
-
         public float Weight
         {
             get { return weight; }
