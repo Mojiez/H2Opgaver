@@ -37,6 +37,14 @@ namespace KaffeMaskinen.DataClasses
             set { grinder = value; }
         }
 
+        private StrengthHandler strengthHandler;
+        public StrengthHandler StrengthHandler
+        {
+            get { return strengthHandler; }
+            set { strengthHandler = value; }
+        }
+
+
         public CoffeeMachine(string model, float height, float width, float depth, float weight, WaterJug waterJug, CoffeeJug coffeeJug, FilterCup filterCup, Grinder grinder) : base(model, height, width, depth, weight)
         {
             WaterJug = waterJug;
@@ -44,6 +52,7 @@ namespace KaffeMaskinen.DataClasses
             FilterCup = filterCup;
             Grinder = grinder;
         }
+        
         /// <summary>
         /// This method starts the coffeemachine if its turned on!
         /// </summary>
