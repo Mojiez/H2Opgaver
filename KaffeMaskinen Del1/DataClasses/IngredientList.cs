@@ -6,7 +6,8 @@ namespace KaffeMaskinen.DataClasses
 {
     public enum IngredientList
     {
-        CoffeeBeans 
+        CoffeeBeans,
+        The
     }
 }
 
