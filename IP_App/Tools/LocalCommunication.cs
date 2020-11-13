@@ -7,6 +7,8 @@ using System.Text;
 
 namespace IP_App_Tools
 {
+    //This class is responsible for all local communication 
+    //For now its only a local ping
     public class LocalCommunication
     {
         private static LocalCommunication _Communication = null;
@@ -29,8 +31,10 @@ namespace IP_App_Tools
                 }
             }
         }
-        //This class is responsible for all local communication 
-        //For now its only a local ping
+        /// <summary>
+        /// This method will ping the loop back 127.0.0.1
+        /// </summary>
+        /// <returns></returns>
         public static PingStatus LocalPing()
         {
             // Ping's the local machine.

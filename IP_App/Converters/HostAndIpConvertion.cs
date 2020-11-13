@@ -7,8 +7,10 @@ namespace IP_App.Converters
 {
     public class HostAndIpConvertion
     {
+       
         private static HostAndIpConvertion _Communication = null;
         private static object controle = new object();
+        //Used for the static methods
         public static HostAndIpConvertion Communicate
         {
             get
@@ -27,7 +29,11 @@ namespace IP_App.Converters
                 }
             }
         }
-
+        /// <summary>
+        /// This method takes a ip then converts it to the host name Via DNS
+        /// </summary>
+        /// <param name="Ip"></param>
+        /// <returns></returns>
         public static string GetHostNameFromIp(string Ip)
         {
             string hostname = "";
@@ -59,7 +65,11 @@ namespace IP_App.Converters
 
             return hostname;
         }
-
+        /// <summary>
+        /// This method takes the host name fx. www.google.com and returns the Host IP via DNS 
+        /// </summary>
+        /// <param name="Hostname"></param>
+        /// <returns></returns>
         public static string GetIpFromHostName(string Hostname)
         {
             string ip = "";

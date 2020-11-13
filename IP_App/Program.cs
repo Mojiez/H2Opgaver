@@ -17,7 +17,8 @@ namespace IP_App
 
             while (running == true)
             {
-                Console.WriteLine("1 Ping Local\n2 Convert host name to IP\n3 Convert IP to host name\n4 Trace route\n5 Get DHCP Addresses");
+                Console.Clear();
+                Console.WriteLine("1 Ping Local\n2 Convert Host name to IP\n3 Convert IP to host name\n4 Trace Route\n5 Get DHCP Addresses");
                 int.TryParse(Console.ReadLine(), out number);
                 switch (number)
                 {
@@ -54,8 +55,6 @@ namespace IP_App
 
                     case 5:
                         Console.Clear();
-                        Console.WriteLine("Type in the IP fx. 8.8.8.8");
-                        input = Console.ReadLine();
                         Diagnosis.DisplayDhcpServerAddresses();
                         Console.ReadKey();
                         break;

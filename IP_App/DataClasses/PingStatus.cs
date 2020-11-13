@@ -7,6 +7,7 @@ namespace IP_App.DataClasses
 {
     public class PingStatus
     {
+        //This class represent the status on pings
         public string Address { get; set; }
         public long RoadTripTime { get; set; }
         public int TimeToLive { get; set; }

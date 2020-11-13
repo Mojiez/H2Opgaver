@@ -11,6 +11,7 @@ namespace IP_App.Tools
     {
         private static Diagnosis _Communication = null;
         private static object controle = new object();
+        //Used for the static methods
         public static Diagnosis Diagnose
         {
             get
@@ -29,6 +30,11 @@ namespace IP_App.Tools
                 }
             }
         }
+        /// <summary>
+        /// This method traces the ip or host name via TraceRoute then displays the status in console window
+        /// </summary>
+        /// <param name="ipAddressOrHostName"></param>
+        /// <returns></returns>
         public static string Traceroute(string ipAddressOrHostName)
         {
 
@@ -86,6 +92,9 @@ namespace IP_App.Tools
             return traceResults.ToString();
         }
 
+        /// <summary>
+        /// Gets the the list of DHCP servers
+        /// </summary>
         public static void DisplayDhcpServerAddresses()
         {
             Console.WriteLine("DHCP Servers");
