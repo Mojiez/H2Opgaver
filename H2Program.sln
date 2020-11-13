@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaffeMaskinen", "KaffeMaski
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirdsFlyingAround_App", "BirdsFlyingAround_App\BirdsFlyingAround_App.csproj", "{0AC38AD5-69F7-44C4-8C7B-9F74ED909200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HjælpLone", "HjælpLone\HjælpLone.csproj", "{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HjælpLone", "HjælpLone\HjælpLone.csproj", "{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IP_App", "IP_App\IP_App.csproj", "{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4431A4F8-8D8C-4E3D-ACEE-0969EB34761A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
