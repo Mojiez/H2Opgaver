@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HjælpLone", "HjælpLone\Hj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IP_App", "IP_App\IP_App.csproj", "{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWindowsService", "TestWindowsService\TestWindowsService.csproj", "{2E3C3AB3-F270-4EDE-8F3F-DECBAA8B725C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6DE8FA3-980B-46FC-B7EA-970ADFD34EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3C3AB3-F270-4EDE-8F3F-DECBAA8B725C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3C3AB3-F270-4EDE-8F3F-DECBAA8B725C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3C3AB3-F270-4EDE-8F3F-DECBAA8B725C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3C3AB3-F270-4EDE-8F3F-DECBAA8B725C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
