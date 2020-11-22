@@ -7,6 +7,7 @@ namespace Hotel_LandLyst_WebApp.Models
 {
     public class ExtraEquipment
     {
+        public int PriceTotal { get; private set; }
         public bool Balconi { get; set; }
         public bool DoubleBed { get; set; }
         public bool Tub { get; set; }
@@ -20,6 +21,31 @@ namespace Hotel_LandLyst_WebApp.Models
             Tub = tub;
             Jacuzzi = jacuzzi;
             Kitchen = kitchen;
+            GetEquipmentPrice();
         }
+
+        private void GetEquipmentPrice()
+        {
+            if (Balconi == true)
+            {
+                PriceTotal += 150;
+            } 
+            if(DoubleBed == true)
+            {
+                PriceTotal += 200;
+            }
+            if (Tub == true)
+            {
+                PriceTotal += 50;
+            }
+            if (Jacuzzi == true)
+            {
+                PriceTotal += 175;
+            }
+            if (Kitchen == true)
+            {
+                PriceTotal += 350;
+            }
+        } 
     }
 }

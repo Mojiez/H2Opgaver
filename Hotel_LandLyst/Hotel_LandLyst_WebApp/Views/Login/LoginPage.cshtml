@@ -1,0 +1,28 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div class="container-fluid collapse">
+    <h3>Login</h3>
+
+    <div class="container loginBackground">
+        @using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
+        {
+            <ul>
+                <li style="display:block;">
+                    <label for="uname"><b>Email</b></label>
+                    <input style="margin-left:30px;" type="text" asp-for="Email" required autocomplete="on" />
+                </li>
+                <li style="display:block;">
+                    <label for="upass"><b>Password</b></label>
+                    <input type="password" asp-for="Password" required autocomplete="on"/>
+                </li>
+                <li style="display:block;">
+                    <button type="submit">Login</button>
+                </li>
+            </ul>
+        }
+    </div>
+</div>
+
