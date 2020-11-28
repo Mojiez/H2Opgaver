@@ -23,32 +23,7 @@
                 <input type="checkbox" class="control-input" />
                 <span asp-validation-for="Status" class="text-info"></span>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => Model.ExtraEquipment)
-                <ul style="display:table">
-                    <li style="display:table-row">
-                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Balconi)
-                        <label>Altan</label>
-                    </li>
-                    <li style="display:table-row">
-                        @Html.CheckBoxFor(m => Model.ExtraEquipment.DoubleBed)
-                        <label>Dobbeltseng</label>
-                    </li>
-                    <li style="display:table-row">
-                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Tub)
-                        <label>Badekar</label>
-                    </li>
-                    <li style="display:table-row">
-                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Jacuzzi)
-                        <label>Jacuzzi</label>
-                    </li>
-                    <li style="display:table-row">
-                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Kitchen)
-                        <label>Køkken</label>
-                    </li>
-                </ul>
-            </div>
-            <div class="form-group">
+          <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

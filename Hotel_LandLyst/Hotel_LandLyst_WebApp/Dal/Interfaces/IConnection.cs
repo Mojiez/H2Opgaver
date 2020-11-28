@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_LandLyst_WebApp.Dal.Interfaces
 {
-    interface IConnection
+    public interface IConnection
     {
         public SqlConnection GetSqlConnection(string conString)
         {

@@ -32,7 +32,7 @@
                                 @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].ExtraEquipment)
+                                @Html.DisplayNameFor(x => x.Rooms[i].Status)
                             </th>
                         </tr>
                     </thead>
@@ -46,10 +46,34 @@
                                 @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
                             </td>
                             <td>
-                                @Html.DisplayFor(x => x.Rooms[i].ExtraEquipment)
+                                @Html.DisplayFor(x => x.Rooms[i].Status)
                             </td>
                         </tr>
                     </tbody>
+                    @for (int j = 0; j < Model.Rooms[i].Furnitures.Count; j++)
+                    {
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Price)
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
                 </table>
                 <ul style="display: inline-block; list-style-type:none;">
                     <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
@@ -63,6 +87,7 @@
                 </ul>
             </div>
         }
+
     </div>
 </div>
 

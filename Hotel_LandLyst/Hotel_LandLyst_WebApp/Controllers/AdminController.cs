@@ -1,4 +1,5 @@
 ﻿using Hotel_LandLyst_WebApp.Dal;
+using Hotel_LandLyst_WebApp.Dal.Interfaces;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,7 @@ namespace Hotel_LandLyst_WebApp.Controllers
         {
             return View();
         }
+        //--------------------------------------Create
         [HttpGet]
         public IActionResult CreateNewRoom()
         {
@@ -23,7 +25,7 @@ namespace Hotel_LandLyst_WebApp.Controllers
             DalManager.Manager.SaveNewRoomToDataBase(roomModel, conString);
             return Redirect("Admin/Index");
         }
-        
+        //--------------------------------------------
 
         public AdminController(IConfiguration configuration)
         {

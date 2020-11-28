@@ -8,15 +8,24 @@ namespace Hotel_LandLyst_WebApp.Models
     public class RoomModel
     {
         public bool Status { get; set; }
-        public ExtraEquipment ExtraEquipment { get; set; }
+        public List<Furniture> Furnitures { get; set; }
         public int RoomNumber { get; set; }
-        public double PricePerNight { get; set; }
-        public RoomModel(bool status, double pricePerNight, ExtraEquipment extraEquipment, int roomNumber)
+        public double PricePerNight { get; private set; } 
+
+        public RoomModel(bool status, List<Furniture> furnitures, int roomNumber, double pricePerNight)
         {
-            Status = status;
             PricePerNight = pricePerNight;
-            ExtraEquipment = extraEquipment;
+            Status = status;
+            Furnitures = furnitures;
             RoomNumber = roomNumber;
+            CalculatePriceTotal();
+        }
+        private void CalculatePriceTotal()
+        {
+            foreach (var item in Furnitures)
+            {
+                PricePerNight += item.Price;
+            }
         }
     }
 }
