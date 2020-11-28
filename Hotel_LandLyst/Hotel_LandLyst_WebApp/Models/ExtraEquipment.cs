@@ -24,6 +24,9 @@ namespace Hotel_LandLyst_WebApp.Models
             GetEquipmentPrice();
         }
 
+        /// <summary>
+        /// Used to Calculate the price for extra equipment
+        /// </summary>
         private void GetEquipmentPrice()
         {
             if (Balconi == true)

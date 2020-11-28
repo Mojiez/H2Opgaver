@@ -29,32 +29,7 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="RoomPlan">Værelsesoversigt</a>
                         </li>
                         <li class="nav-item">
-                            <p>
-                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
-                                    Login
-                                </button>
-                            </p>
-                            <div class="collapse " id="collapseLogin">
-                                <div class="card card-body bg-info">
-                                    @using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
-                                    {
-                                        <ul>
-                                            <li class="nav-item" style="display:block;">
-                                                <label for="uname" style="margin-left:30px;"><b>Email</b></label>
-                                                <input style="" type="text" asp-for="Email" required autocomplete="on" />
-                                            </li>
-                                            <li class="nav-item" style="display:block;">
-                                                <label for="upass"><b>Password</b></label>
-                                                <input type="password" asp-for="Password" required autocomplete="on" />
-                                            </li>
-                                            <li class="nav-item" style="display:block;">
-                                                <button type="submit" class="btn-outline-dark">Login</button>
-                                            </li>
-                                        </ul>
-                                    }
-                                </div>
-                            </div>
-
+                            <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="CreateNewRoom">Tilføj nyt rum</a>
                         </li>
                     </ul>
                 </div>

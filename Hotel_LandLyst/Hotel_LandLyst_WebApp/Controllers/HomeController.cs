@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Hotel_LandLyst_WebApp.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Hotel_LandLyst_WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private string conString;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
+            //imports connection string from appsettings 
+            conString = configuration.GetConnectionString("myConnection");
             _logger = logger;
         }
 

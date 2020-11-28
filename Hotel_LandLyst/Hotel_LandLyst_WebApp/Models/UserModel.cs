@@ -7,13 +7,12 @@ namespace Hotel_LandLyst_WebApp.Models
 {
     public class UserModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public UserModel(int id, string name)
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public UserModel(string firstName, string lastName)
         {
-            Id = id;
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }

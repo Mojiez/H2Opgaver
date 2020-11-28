@@ -16,10 +16,17 @@ namespace Hotel_LandLyst_WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult OrderPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult OrderPage(OrderModel orderModel)
         {
-            if(orderModel == null)
-            return View(new OrderModel(costumerModel, ));
+            return View();
         }
+
     }
 }

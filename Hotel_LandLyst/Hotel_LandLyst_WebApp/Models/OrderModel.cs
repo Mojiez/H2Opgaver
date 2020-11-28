@@ -10,7 +10,7 @@ namespace Hotel_LandLyst_WebApp.Models
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public CostumerModel Costumer { get; set; }
-        public List<RoomModel> Room { get; set; }
+        public List<RoomModel> Rooms { get; set; }
         public double TotalPrice { get; set; }
         public int RentingPeriod { get; set; }
 
@@ -20,14 +20,18 @@ namespace Hotel_LandLyst_WebApp.Models
             CheckOutDate = CheckInDate.AddDays(daysRented);
             Costumer = costumer;
             RentingPeriod = daysRented;
-            Room = new List<RoomModel>();
+            Rooms = new List<RoomModel>();
         }
 
         public void CalculatePrice(List<RoomModel> rooms)
         {
             foreach (var item in rooms)
             {
-                TotalPrice = item.PrizePerNight * RentingPeriod;
+
+            }
+            if (RentingPeriod > 6)
+            {
+                TotalPrice -= TotalPrice * 0.1;
             }
         }
     }

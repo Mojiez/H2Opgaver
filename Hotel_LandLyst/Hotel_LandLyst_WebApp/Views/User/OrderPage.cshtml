@@ -11,14 +11,58 @@
         <form asp-action="OrderPage">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="OrderDate" class="control-label"></label>
-                <input asp-for="OrderDate" class="form-control" />
-                <span asp-validation-for="OrderDate" class="text-danger"></span>
+                <label asp-for="CheckInDate" class="control-label"></label>
+                <input asp-for="CheckInDate" class="form-control" />
+                <span asp-validation-for="CheckInDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        @for (int i = 0; i < Model.Rooms.Count; i++)
+        {
+            <div class="table-responsive">
+                <table class="table-bordered w-100 p-3" style="text-align:center;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(x => x.Rooms[i].RoomNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x.Rooms[i].ExtraEquipment)
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => x.Rooms[i].RoomNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => x.Rooms[i].ExtraEquipment)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul style="display: inline-block; list-style-type:none;">
+                    <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
+                        @using (Html.BeginForm("DeleteCourse", "Course", FormMethod.Get))
+                        {
+                            @Html.ValidationSummary(true)
+                            //<input asp-for="Id" type="number" value="@Model.Courses[i].Id" hidden />
+                            <button type="submit">Fjern</button>
+                        }
+                    </li>
+                </ul>
+            </div>
+        }
     </div>
 </div>
 

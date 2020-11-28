@@ -12,7 +12,7 @@ namespace Hotel_LandLyst_WebApp.Models
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public CostumerModel(int id, string name, string address, string postalCode, int phoneNumber, string email) : base(id, name)
+        public CostumerModel(string firstName, string lastName, string address, string postalCode, int phoneNumber, string email) : base(firstName, lastName)
         {
             Address = address;
             PostalCode = postalCode;
