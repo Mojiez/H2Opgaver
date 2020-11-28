@@ -7,13 +7,13 @@ namespace Hotel_LandLyst_WebApp.Models
 {
     public class RoomModel
     {
-        public char Category { get; set; }
+        public bool Status { get; set; }
         public ExtraEquipment ExtraEquipment { get; set; }
         public int RoomNumber { get; set; }
         public double PricePerNight { get; set; }
-        public RoomModel(char category, double pricePerNight, ExtraEquipment extraEquipment, int roomNumber)
+        public RoomModel(bool status, double pricePerNight, ExtraEquipment extraEquipment, int roomNumber)
         {
-            Category = category;
+            Status = status;
             PricePerNight = pricePerNight;
             ExtraEquipment = extraEquipment;
             RoomNumber = roomNumber;

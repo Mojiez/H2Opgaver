@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Hotel_LandLyst_WebApp.Dal;
+using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -17,8 +15,13 @@ namespace Hotel_LandLyst_WebApp.Controllers
         [HttpGet]
         public IActionResult CreateNewRoom()
         {
-
-            return View(new );
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateNewRoom(RoomModel roomModel)
+        {
+            DalManager.Manager.SaveNewRoomToDataBase(roomModel, conString);
+            return Redirect("Admin/Index");
         }
         
 

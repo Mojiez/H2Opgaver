@@ -27,7 +27,7 @@ namespace Hotel_LandLyst_WebApp.Models
         {
             foreach (var item in rooms)
             {
-
+                TotalPrice += item.PricePerNight;
             }
             if (RentingPeriod > 6)
             {

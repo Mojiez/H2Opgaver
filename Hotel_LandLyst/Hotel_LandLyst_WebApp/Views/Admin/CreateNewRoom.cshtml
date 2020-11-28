@@ -1,0 +1,58 @@
+﻿@model Hotel_LandLyst_WebApp.Models.RoomModel
+
+@{
+    ViewData["Title"] = "CreateNewRoom";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateNewRoom">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomNumber" class="control-label"></label>
+                <input asp-for="RoomNumber" class="form-control" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerNight" class="control-label"></label>
+                <input asp-for="PricePerNight" class="form-control" />
+                <span asp-validation-for="PricePerNight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input type="checkbox" class="control-input" />
+                <span asp-validation-for="Status" class="text-info"></span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.ExtraEquipment)
+                <ul style="display:table">
+                    <li style="display:table-row">
+                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Balconi)
+                        <label>Altan</label>
+                    </li>
+                    <li style="display:table-row">
+                        @Html.CheckBoxFor(m => Model.ExtraEquipment.DoubleBed)
+                        <label>Dobbeltseng</label>
+                    </li>
+                    <li style="display:table-row">
+                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Tub)
+                        <label>Badekar</label>
+                    </li>
+                    <li style="display:table-row">
+                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Jacuzzi)
+                        <label>Jacuzzi</label>
+                    </li>
+                    <li style="display:table-row">
+                        @Html.CheckBoxFor(m => Model.ExtraEquipment.Kitchen)
+                        <label>Køkken</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
