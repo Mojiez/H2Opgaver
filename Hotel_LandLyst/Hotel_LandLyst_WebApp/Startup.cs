@@ -21,6 +21,7 @@ namespace Hotel_LandLyst_WebApp
             services.AddControllersWithViews();
             services.AddMvc();
             string conString = this.Configuration.GetConnectionString("myConnection");
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
