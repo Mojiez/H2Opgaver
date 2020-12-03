@@ -1,0 +1,18 @@
+﻿@model Hotel_LandLyst_WebApp.Models.SuccessModel
+@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@for (int i = 0; i < Model.GetType().GetProperties().Length; i++)
+{
+    if (Model.GetType().GetProperties()[i] != null)
+    {
+        <div>
+            <p>You have successfully created @Model.GetType().GetProperties()[i].Name</p>
+            <div>
+                <a asp-action="Index" asp-controller="Admin">Tilbage</a>
+            </div>
+        </div>
+}
+}

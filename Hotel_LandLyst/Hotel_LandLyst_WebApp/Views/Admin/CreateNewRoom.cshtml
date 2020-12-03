@@ -4,30 +4,42 @@
     ViewData["Title"] = "CreateNewRoom";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<h1>CreateNewRoom</h1>
+
+<h4>RoomModel</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateNewRoom">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoomNumber" class="control-label"></label>
-                <input asp-for="RoomNumber" class="form-control" />
-                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Clean" /> @Html.DisplayNameFor(model => model.Clean)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Rented" /> @Html.DisplayNameFor(model => model.Rented)
+                </label>
             </div>
             <div class="form-group">
-                <label asp-for="PricePerNight" class="control-label"></label>
-                <input asp-for="PricePerNight" class="form-control" />
-                <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" inputmode="numeric" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input type="checkbox" class="control-input" />
-                <span asp-validation-for="Status" class="text-info"></span>
+                <input name="price" type="text" class="form-control" />
             </div>
-          <div class="form-group">
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 

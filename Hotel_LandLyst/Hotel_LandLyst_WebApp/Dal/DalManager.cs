@@ -1,19 +1,16 @@
-﻿using Hotel_LandLyst_WebApp.Dal.Interfaces;
+﻿using Hotel_LandLyst_WebApp.Interfaces;
 using Hotel_LandLyst_WebApp.Models;
-using System;
-using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hotel_LandLyst_WebApp.Dal
 {
     //This class is responsible for communication with data base 
-    public class DalManager : IConnection
+    public class DalManager
     {
         private static DalManager _manager = null;
         private static object controle = new object();
-
         //creates singleton with thread lock
         public static DalManager Manager
         {
@@ -33,16 +30,50 @@ namespace Hotel_LandLyst_WebApp.Dal
                 }
             }
         }
-
-        public void SaveNewRoomToDataBase(RoomModel roomModel, string connectionString)
+        //-----------------------------------------Room
+        public void SaveRoom(RoomModel roomModel, IConfiguration configuration)
         {
-            IConnection connection = _manager;
+            DBManager.SaveRoomToDb(roomModel, configuration);
+        }
+        
+        //-----------------------------------------User
+        /// <summary>
+        /// Used to save a new user to database
+        /// </summary>
+        public void SaveUser()
+        {
 
-            SqlCommand cmd = new SqlCommand($"insert into Room(Number, PricePerNight, Status)" +
-                $" Values('{roomModel.RoomNumber}','{roomModel.PricePerNight}','{roomModel.Status}')", connection.OpenConnection(connection.GetSqlConnection(connectionString)));
+        }
 
-            cmd.ExecuteNonQuery();
-            connection.CloseConnection(connection.GetSqlConnection(connectionString));
+        /// <summary>
+        /// Used to update User data in database
+        /// </summary>
+        public void UpdateUser()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<UserModel> GetUser()
+        {
+            return await new Task<UserModel>(null);
+        }
+
+        //----------------------------------------Furniture
+        //Make this method save Furniture
+        public void SaveNewFuniture(FurnitureModel furnitureModel, IConfiguration configuration)
+        {
+            
+        }
+
+        //---------------------------------------Order
+        //Make this method save Order 
+        public void SaveNewOrder()
+        {
+
         }
     }
 }

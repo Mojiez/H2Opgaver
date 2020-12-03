@@ -26,13 +26,16 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].RoomNumber)
+                                @Html.DisplayNameFor(x => x.Rooms[i].Number)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].Status)
+                                @Html.DisplayNameFor(x => x.Rooms[i].Clean)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => x.Rooms[i].Rented)
                             </th>
                         </tr>
                     </thead>
@@ -40,13 +43,16 @@
                     <tbody>
                         <tr>
                             <td>
-                                @Html.DisplayFor(x => x.Rooms[i].RoomNumber)
+                                @Html.DisplayFor(x => x.Rooms[i].Number)
                             </td>
                             <td>
                                 @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
                             </td>
                             <td>
-                                @Html.DisplayFor(x => x.Rooms[i].Status)
+                                @Html.DisplayFor(x => x.Rooms[i].Clean)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => x.Rooms[i].Rented)
                             </td>
                         </tr>
                     </tbody>
@@ -62,7 +68,6 @@
                                 </th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr>
                                 <td>
@@ -87,7 +92,6 @@
                 </ul>
             </div>
         }
-
     </div>
 </div>
 

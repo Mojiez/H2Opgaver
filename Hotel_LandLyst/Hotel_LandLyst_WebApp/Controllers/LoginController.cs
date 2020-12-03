@@ -9,17 +9,15 @@ namespace Hotel_LandLyst_WebApp.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult LoginPage()
         {
-            return View();
+                return View();
         }
-
+        [HttpPost]
         public IActionResult LoginPage(LoginModel loginModel)
         {
-            if (loginModel == null)
-                return View(new LoginModel());
-            else
-                return View(loginModel);
+            
+           return Redirect("");
         }
     }
 }

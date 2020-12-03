@@ -1,5 +1,7 @@
+using Hotel_LandLyst_WebApp.Dal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +12,7 @@ namespace Hotel_LandLyst_WebApp
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration;   
         }
 
         public IConfiguration Configuration { get; }
@@ -21,7 +23,11 @@ namespace Hotel_LandLyst_WebApp
             services.AddControllersWithViews();
             services.AddMvc();
             string conString = this.Configuration.GetConnectionString("myConnection");
-            services.AddApplicationInsightsTelemetry();
+            services.AddMvc();
+
+            // Add application services
+            
+            services.AddConnections();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +46,7 @@ namespace Hotel_LandLyst_WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting().UseCookiePolicy();
 
             app.UseAuthorization();
 

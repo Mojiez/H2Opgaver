@@ -9,11 +9,13 @@ namespace Hotel_LandLyst_WebApp.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-       
-        public UserModel(string firstName, string lastName)
+        public bool Admin { get; set; }
+
+        public UserModel(string firstName, string lastName, bool admin)
         {
             FirstName = firstName;
             LastName = lastName;
+            Admin = admin;
         }
     }
 }

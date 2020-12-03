@@ -1,0 +1,13 @@
+version: "2"
+services:
+    LandLyst_Db:
+        image: mcr.microsoft.com/mssql/server
+        ports:
+            - 11433:1433
+    hotel_landlys_site:
+        image: asp-landlyst
+        depends_on:
+            - LandLyst_Db
+        ports: 
+            - 5000:80
+        

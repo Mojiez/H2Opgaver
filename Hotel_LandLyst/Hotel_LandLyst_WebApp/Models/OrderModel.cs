@@ -10,9 +10,9 @@ namespace Hotel_LandLyst_WebApp.Models
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public CostumerModel Costumer { get; set; }
-        public List<RoomModel> Rooms { get; set; }
-        public double TotalPrice { get; set; }
+        public float TotalPrice { get; set; }
         public int RentingPeriod { get; set; }
+        public List<RoomModel> Rooms { get; set; }
 
         public OrderModel(CostumerModel costumer, int daysRented)
         {
@@ -23,16 +23,18 @@ namespace Hotel_LandLyst_WebApp.Models
             Rooms = new List<RoomModel>();
         }
 
-        public void CalculatePrice(List<RoomModel> rooms)
+        public float CalculatePrice(List<RoomModel> rooms)
         {
+            TotalPrice = 0;
             foreach (var item in rooms)
             {
                 TotalPrice += item.PricePerNight;
             }
             if (RentingPeriod > 6)
             {
-                TotalPrice -= TotalPrice * 0.1;
+                TotalPrice -= TotalPrice * 0.1f;
             }
+            return TotalPrice;
         }
     }
 }

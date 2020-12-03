@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Hotel_LandLyst_WebApp.Models
 {
-    public class Furniture
+    public class FurnitureModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public float Price { get; set; }
 
-        public Furniture(int id, string name, double price)
+        public FurnitureModel(int id, string name, float price)
         {
             Id = id;
             Name = name;
