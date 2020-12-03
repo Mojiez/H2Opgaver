@@ -11,6 +11,5 @@ namespace Hotel_LandLyst_WebApp.Models
         public FurnitureModel FurnitureModel { get; set; }
         public RoomModel RoomModel { get; set; }
         public EmployeeModel EmployeeModel { get; set; }
-
     }
 }

@@ -7,8 +7,10 @@ namespace Hotel_LandLyst_WebApp.Models
 {
     public class EmployeeModel : UserModel
     {
-        public EmployeeModel(string firstName, string lastName, bool admin) : base(firstName, lastName, admin)
+        public string Title { get; set; }
+        public EmployeeModel(string firstName, string lastName, bool admin, string title) : base(firstName, lastName, admin)
         {
+            Title = title;
         }
     }
 }

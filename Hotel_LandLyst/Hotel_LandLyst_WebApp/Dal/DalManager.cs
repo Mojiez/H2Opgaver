@@ -1,6 +1,7 @@
 ﻿using Hotel_LandLyst_WebApp.Interfaces;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
@@ -36,6 +37,10 @@ namespace Hotel_LandLyst_WebApp.Dal
             DBManager.SaveRoomToDb(roomModel, configuration);
         }
         
+        public List<RoomModel> GetRooms(IConfiguration configuration)
+        {
+            return DBManager.GetRoomsFromDb(configuration);
+        }
         //-----------------------------------------User
         /// <summary>
         /// Used to save a new user to database
@@ -57,9 +62,9 @@ namespace Hotel_LandLyst_WebApp.Dal
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<UserModel> GetUser()
+        public List<UserModel> GetUser()
         {
-            return await new Task<UserModel>(null);
+            return new List<UserModel>(null);
         }
 
         //----------------------------------------Furniture

@@ -3,17 +3,21 @@ using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
-
 namespace Hotel_LandLyst_WebApp.Controllers
 {
     public class AdminController : Controller
     {
         private IConfiguration Configuration;
         
-        public IActionResult CreationSuccessPage(object obj)
+        public IActionResult CreationSuccessPage(SuccessModel successModel)
         {
+            return View(successModel);
+        }
 
-            return View();
+        public IActionResult RoomOrderView()
+        {
+            // GetDataFromDB
+            return View(new OrderModel() { Rooms = DalManager.Manager.GetRooms(Configuration) });
         }
 
         public IActionResult Index()
@@ -33,21 +37,18 @@ namespace Hotel_LandLyst_WebApp.Controllers
         {
             roomModel.PricePerNight = (float)Convert.ToDecimal(price);
             DalManager.Manager.SaveRoom(roomModel, Configuration);
-            return CreationSuccessPage();
+            return View("CreationSuccessPage", new SuccessModel() { RoomModel = roomModel });
         }
         //--------------------------------------------
 
-
+        //--------------------------------------CreateNewFurniture
         [HttpPost]
         public IActionResult CreateNewFurniture(FurnitureModel furnitureModel, string price)
         {
             furnitureModel.Price = (float)Convert.ToDecimal(price);
             DalManager.Manager.SaveNewFuniture(furnitureModel, Configuration);
-
-            //Return a succes window
-            return Redirect("CreationSuccessPage");
+            return View("CreationSuccessPage", new SuccessModel() { FurnitureModel = furnitureModel });
         }
-
 
         public AdminController(IConfiguration configuration)
         {

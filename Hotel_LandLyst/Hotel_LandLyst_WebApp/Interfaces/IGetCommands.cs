@@ -29,7 +29,7 @@ namespace Hotel_LandLyst_WebApp.Interfaces
 
         public string SelectFromTable(string table)
         {
-            return $"";
+            return $"Select * FROM {table}";
         }
     }
 }

@@ -22,7 +22,10 @@ namespace Hotel_LandLyst_WebApp.Models
             RentingPeriod = daysRented;
             Rooms = new List<RoomModel>();
         }
+        public OrderModel()
+        {
 
+        }
         public float CalculatePrice(List<RoomModel> rooms)
         {
             TotalPrice = 0;
