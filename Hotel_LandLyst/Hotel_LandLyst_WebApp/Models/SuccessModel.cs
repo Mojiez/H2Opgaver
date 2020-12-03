@@ -9,8 +9,8 @@ namespace Hotel_LandLyst_WebApp.Models
     {
         public CostumerModel CostumerModel { get; set; }
         public FurnitureModel FurnitureModel { get; set; }
-        public OrderModel OrderModel { get; set; }
         public RoomModel RoomModel { get; set; }
-        public int MyProperty { get; set; }
+        public EmployeeModel EmployeeModel { get; set; }
+
     }
 }

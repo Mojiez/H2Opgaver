@@ -10,9 +10,10 @@ namespace Hotel_LandLyst_WebApp.Controllers
     {
         private IConfiguration Configuration;
         
-        public IActionResult CreationSuccessPage()
+        public IActionResult CreationSuccessPage(object obj)
         {
-            return View(new SuccessModel());
+
+            return View();
         }
 
         public IActionResult Index()
@@ -32,7 +33,7 @@ namespace Hotel_LandLyst_WebApp.Controllers
         {
             roomModel.PricePerNight = (float)Convert.ToDecimal(price);
             DalManager.Manager.SaveRoom(roomModel, Configuration);
-            return Redirect("CreationSuccessPage");
+            return CreationSuccessPage();
         }
         //--------------------------------------------
 
