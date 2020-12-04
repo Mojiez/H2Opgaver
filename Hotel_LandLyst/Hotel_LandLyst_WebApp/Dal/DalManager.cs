@@ -62,9 +62,9 @@ namespace Hotel_LandLyst_WebApp.Dal
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<UserModel> GetUser()
+        public List<EmployeeModel> GetUser(IConfiguration configuration)
         {
-            return new List<UserModel>(null);
+            return DBManager.GetEmployeeModels(configuration);
         }
 
         //----------------------------------------Furniture

@@ -94,7 +94,7 @@ namespace Hotel_LandLyst_WebApp.Dal
         {
             List<EmployeeModel> empModels = new List<EmployeeModel>();
             SqlConnection sqlConnection = new SqlConnection(configuration.GetConnectionString("myConnection"));
-            SqlCommand sqlCommand = new SqlCommand("SELECT EmployeeModel.FirstName, EmployeeModel.LastName, EmployeeModel.Admin, Title.Name FROM EmployeeModel, Title WHERE EmployeeModel.FKTitle_Id = Title.Id", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SELECT EmployeeModel.FirstName, EmployeeModel.LastName, EmployeeModel.Admin, EmployeeModel.UserName, EmployeeModel.Password, Title.Name FROM EmployeeModel, Title WHERE EmployeeModel.FKTitle_Id = Title.Id", sqlConnection);
             sqlConnection.Open();
             sqlCommand.Connection = sqlConnection;
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
@@ -102,10 +102,12 @@ namespace Hotel_LandLyst_WebApp.Dal
             {
                 string fName = (string)dataReader["FirstName"];
                 string lName = (string)dataReader["LastName"];
+                string uName = (string)dataReader["UserName"];
+                string password = (string)dataReader["Password"];
                 bool admin = (bool)dataReader["Admin"];
                 string title = (string)dataReader["Name"];
 
-                empModels.Add(new EmployeeModel(fName, lName, admin, title));
+                empModels.Add(new EmployeeModel(fName, lName, admin, uName, password, title));
             }
             sqlConnection.Close();
             return empModels;

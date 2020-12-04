@@ -8,7 +8,12 @@ namespace Hotel_LandLyst_WebApp.Controllers
     public class AdminController : Controller
     {
         private IConfiguration Configuration;
-        
+
+        public AdminController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public IActionResult CreationSuccessPage(SuccessModel successModel)
         {
             return View(successModel);
@@ -50,9 +55,18 @@ namespace Hotel_LandLyst_WebApp.Controllers
             return View("CreationSuccessPage", new SuccessModel() { FurnitureModel = furnitureModel });
         }
 
-        public AdminController(IConfiguration configuration)
+
+        //--------------------------------------CreateNewEmployee
+        public IActionResult CreateNewEmployee()
         {
-            Configuration = configuration;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewEmployee(EmployeeModel employeeModel)
+        {
+            //Upload employees to db
+            return View();
         }
     }
 }
