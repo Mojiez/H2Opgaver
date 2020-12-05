@@ -22,7 +22,12 @@ namespace Hotel_LandLyst_WebApp.Controllers
         public IActionResult RoomOrderView()
         {
             // GetDataFromDB
-            return View(new OrderModel() { Rooms = DalManager.Manager.GetRooms(Configuration) });
+            OrderModel orderModel = new OrderModel() { Rooms = DalManager.Manager.GetRooms(Configuration) };
+            foreach (var item in orderModel.Rooms)
+            {
+                item.CalculatePriceTotal();
+            }
+            return View(orderModel);
         }
 
         public IActionResult Index()
@@ -47,10 +52,15 @@ namespace Hotel_LandLyst_WebApp.Controllers
         //--------------------------------------------
 
         //--------------------------------------CreateNewFurniture
-        [HttpPost]
-        public IActionResult CreateNewFurniture(FurnitureModel furnitureModel, string price)
+        [HttpGet]
+        public IActionResult CreateNewFurniture()
         {
-            furnitureModel.Price = (float)Convert.ToDecimal(price);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewFurniture(FurnitureModel furnitureModel)
+        {
             DalManager.Manager.SaveNewFuniture(furnitureModel, Configuration);
             return View("CreationSuccessPage", new SuccessModel() { FurnitureModel = furnitureModel });
         }

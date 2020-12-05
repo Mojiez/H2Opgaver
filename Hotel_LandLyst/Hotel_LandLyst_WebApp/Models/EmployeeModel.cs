@@ -10,11 +10,13 @@ namespace Hotel_LandLyst_WebApp.Models
         public string Title { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public EmployeeModel(string firstName, string lastName, bool admin, string userName, string password, string title) : base(firstName, lastName, admin)
+        public string Salt { get; set; }
+        public EmployeeModel(string firstName, string lastName, bool admin, string userName, string password, string title, string salt) : base(firstName, lastName, admin)
         {
             UserName = userName;
             Password = password;
             Title = title;
+            Salt = salt;
         }
     }
 }

@@ -6,19 +6,15 @@
 
 <h1>OrderPage</h1>
 <hr />
+
+
 <div class="row">
+    <div class="d-flex justify-content-end position-relative">
+        <p>basket</p>
+        <ul id="dynamic-list">
+        </ul>
+    </div>
     <div class="col-md-4">
-        <form asp-action="OrderPage">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CheckInDate" class="control-label"></label>
-                <input asp-for="CheckInDate" class="form-control" />
-                <span asp-validation-for="CheckInDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
         @for (int i = 0; i < Model.Rooms.Count; i++)
         {
             <div class="table-responsive">
@@ -60,12 +56,15 @@
                     {
                         <thead>
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
-                                </th>
+                                @if (j == 0)
+                                {
+                                    <th>
+                                        @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
+                                    </th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -80,21 +79,15 @@
                         </tbody>
                     }
                 </table>
-                <ul style="display: inline-block; list-style-type:none;">
+                <ul id="dynamic-list" style="display: inline-block; list-style-type:none;">
                     <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
-                        @using (Html.BeginForm("DeleteCourse", "Course", FormMethod.Get))
-                        {
-                            @Html.ValidationSummary(true)
-                            //<input asp-for="Id" type="number" value="@Model.Courses[i].Id" hidden />
-                            <button type="submit">Fjern</button>
-                        }
+
+                        <button onclick="addItem(@Model.Rooms[i].Number)">add item</button>
+                        <button onclick="removeItem(@Model.Rooms[i].Number)">remove item</button>
                     </li>
                 </ul>
             </div>
         }
     </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script src="~/js/JSBasket.js"></script>

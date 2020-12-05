@@ -39,9 +39,9 @@ namespace Hotel_LandLyst_WebApp.Dal
         
         public List<RoomModel> GetRooms(IConfiguration configuration)
         {
-            return DBManager.GetRoomsFromDb(configuration);
+            return DBManager.CombineRoomAndFurniture(configuration);
         }
-        //-----------------------------------------User
+        //-----------------------------------------Costumers
         /// <summary>
         /// Used to save a new user to database
         /// </summary>
@@ -58,20 +58,22 @@ namespace Hotel_LandLyst_WebApp.Dal
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<EmployeeModel> GetUser(IConfiguration configuration)
+        //-----------------------------------------Employees
+        
+        public List<EmployeeModel> GetEmployees(IConfiguration configuration)
         {
             return DBManager.GetEmployeeModels(configuration);
         }
 
+        public void SaveNewEmployee()
+        {
+            
+        }
         //----------------------------------------Furniture
         //Make this method save Furniture
         public void SaveNewFuniture(FurnitureModel furnitureModel, IConfiguration configuration)
         {
-            
+            DBManager.SaveFurnitureToDb(furnitureModel, configuration);
         }
 
         //---------------------------------------Order

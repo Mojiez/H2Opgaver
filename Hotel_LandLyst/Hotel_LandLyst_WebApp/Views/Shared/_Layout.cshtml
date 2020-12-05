@@ -1,4 +1,4 @@
-﻿@model LoginModel
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +28,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="RoomPlan">Værelsesoversigt</a>
                         </li>
+                        <!--
                         <li class="nav-item">
                             <p>
                                 <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
@@ -36,7 +37,7 @@
                             </p>
                             <div class="collapse " id="collapseLogin">
                                 <div class="card card-body bg-info">
-                                    @using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
+                                    //using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
                                     {
                                         <ul>
                                             <li class="nav-item" style="display:block;">
@@ -54,8 +55,8 @@
                                     }
                                 </div>
                             </div>
-
-                        </li>
+                        </li>  
+                        -->
                     </ul>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 ﻿using Hotel_LandLyst_WebApp.Dal;
+using Hotel_LandLyst_WebApp.Logic.Encryption;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -23,17 +24,13 @@ namespace Hotel_LandLyst_WebApp.Controllers
                 return View();
         }
 
+        //Not working yet 
         [HttpPost]
         public IActionResult LoginPage(LoginModel loginModel)
         {
-            List<EmployeeModel> employeeModels = DalManager.Manager.GetUser(loginConfig);
-            EmployeeModel employee = employeeModels.Where(e => e.UserName == loginModel.Email && e.Password == loginModel.Password).FirstOrDefault();
-            if (employee != null)
-            {
-                if (employee.Admin == true)
-                    return Redirect("/Admin/Index");
-            }
-
+            PasswordEncryption passwordEncryption = new PasswordEncryption();
+            List<EmployeeModel> employeeModels = DalManager.Manager.GetEmployees(loginConfig);
+           
             return Redirect("Error");
         }
 

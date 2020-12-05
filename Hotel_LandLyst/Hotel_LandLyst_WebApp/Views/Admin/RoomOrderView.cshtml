@@ -4,15 +4,12 @@
     ViewData["Title"] = "RoomOrderView";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
 <div class="container-fluid">
     <div class="row">
         @for (int i = 0; i < Model.Rooms.Count; i++)
         {
-            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 py-2">
-
-                <div class="content alert-info" style="border : solid 2px black;">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 py-2 bg-dark">
+                <div class="content" style="border : solid 2px black;">
                     <div>
                         <dl style="margin: 0px 10px 0px 0px;">
                             <dt>
@@ -44,6 +41,30 @@
                                 </dd>
                             }
                         </dl>
+                        @if (Model.Rooms[i].Furnitures != null)
+                        {
+                            @for (int j = 0; j < Model.Rooms[i].Furnitures.Count; j++)
+                            {
+                                <div class="container">
+                                    <dl style="margin: 0px 10px 0px 0px; display:inline" >
+                                        <dt>
+                                            @Html.DisplayNameFor(m => m.Rooms[i].Furnitures[j].Name)
+                                        </dt>
+                                        <dd>
+                                            @Model.Rooms[i].Furnitures[j].Name
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt style="margin: 0px 10px 0px 0px; display:inline">
+                                            @Html.DisplayNameFor(m => m.Rooms[i].Furnitures[j].Price)
+                                        </dt>
+                                        <dd>
+                                            @Model.Rooms[i].Furnitures[j].Price
+                                        </dd>
+                                    </dl>
+                                </div>
+                            }
+                        }
                         <!-- Made ready for order
                         <ul style="display: inline-block; list-style-type:none;">
                             <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
@@ -72,5 +93,4 @@
             </div>
         }
     </div>
-
 </div>

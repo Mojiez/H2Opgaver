@@ -16,7 +16,7 @@ namespace Hotel_LandLyst_WebApp.Logic
             sqlCommand += "(";
             for (int i = 0; i < propertyInfo.Length; i++)
             {
-                if (propertyInfo[i].ToString().Split()[0].Length < 15)
+                if (propertyInfo[i].ToString().Split()[0].Length < 15 && propertyInfo[i].ToString().Split()[1] != "Id")
                 {
                     if (propertyInfo.Length > i + 1 && propertyInfo[i + 1].ToString().Split()[0].Length < 15)
                         sqlCommand += $"@{propertyInfo[i].ToString().Split()[1]}, ";
@@ -33,8 +33,9 @@ namespace Hotel_LandLyst_WebApp.Logic
             PropertyInfo[] propertyInfos = obj.GetType().GetProperties();
             for (int i = 0; i < propertyInfos.Length; i++)
             {
-                if(propertyInfos[i].ToString().Split()[0].Length < 15)
-                command.Parameters.Add(new SqlParameter($"@{propertyInfos[i].ToString().Split()[1]}", propertyInfos[i].GetValue(obj)));
+                if (propertyInfos[i].ToString().Split()[0].Length < 15 && propertyInfos[i].ToString().Split()[1] != "Id")
+                    //Gets the value and the property
+                    command.Parameters.Add(new SqlParameter($"@{propertyInfos[i].ToString().Split()[1]}", propertyInfos[i].GetValue(obj)));
             }
             return command;
         }
