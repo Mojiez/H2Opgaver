@@ -6,86 +6,91 @@
 
 <h1>OrderPage</h1>
 <hr />
+<p>
+    <button class="btn btn-primary" style="border-radius:50%;" type="button" data-toggle="collapse" data-target="#collapseBasket" aria-expanded="false" aria-controls="collapseBasket">
+        <img src="~/images/kurv-ikon.png" width="50" height="50"/>
+    </button>
+</p>
+<div class="collapse container" id="collapseBasket">
+    <div id="basket" class="card card-body bg-primary list-group-horizontal row">
 
-
-<div class="row">
-    <div class="d-flex justify-content-end position-relative">
-        <p>basket</p>
-        <ul id="dynamic-list">
-        </ul>
     </div>
-    <div class="col-md-4">
+</div>
+
+<div class="container bg-dark">
+    <div class="row">
         @for (int i = 0; i < Model.Rooms.Count; i++)
         {
-            <div class="table-responsive">
-                <table class="table-bordered w-100 p-3" style="text-align:center;">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].Number)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].Clean)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(x => x.Rooms[i].Rented)
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(x => x.Rooms[i].Number)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => x.Rooms[i].Clean)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => x.Rooms[i].Rented)
-                            </td>
-                        </tr>
-                    </tbody>
-                    @for (int j = 0; j < Model.Rooms[i].Furnitures.Count; j++)
-                    {
+            <div class="col-md-4">
+                <div class="table-responsive">
+                    <table class="table-bordered w-100 p-3" style="text-align:center;">
                         <thead>
-                            <tr>
-                                @if (j == 0)
-                                {
-                                    <th>
-                                        @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
-                                    </th>
-                                }
+                            <tr class="bg-info">
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Number)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Clean)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Rented)
+                                </th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <tr>
+                            <tr class="bg-white">
                                 <td>
-                                    @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Name)
+                                    @Html.DisplayFor(x => x.Rooms[i].Number)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Price)
+                                    @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Clean)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Rented)
                                 </td>
                             </tr>
                         </tbody>
-                    }
-                </table>
-                <ul id="dynamic-list" style="display: inline-block; list-style-type:none;">
-                    <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
+                        @for (int j = 0; j < Model.Rooms[i].Furnitures.Count; j++)
+                        {
+                            <thead>
+                                <tr class="bg-white">
+                                    @if (j == 0)
+                                    {
+                                        <th>
+                                            @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
+                                        </th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td>
+                                        @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Price)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                    <ul style="display: inline-block; list-style-type:none;">
+                        <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
 
-                        <button onclick="addItem(@Model.Rooms[i].Number)">add item</button>
-                        <button onclick="removeItem(@Model.Rooms[i].Number)">remove item</button>
-                    </li>
-                </ul>
+                            <button onclick="addItem(@Model.Rooms[i].Number)">Tilføj til kurv</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         }
     </div>

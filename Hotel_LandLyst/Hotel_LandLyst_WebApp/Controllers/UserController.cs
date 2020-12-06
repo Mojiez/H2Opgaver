@@ -6,7 +6,7 @@ using Hotel_LandLyst_WebApp.Dal;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-
+using System.Web;
 namespace Hotel_LandLyst_WebApp.Controllers
 {
     //This class is responsible for user control
@@ -34,7 +34,7 @@ namespace Hotel_LandLyst_WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrderPage(OrderModel orderModel)
+        public IActionResult OrderPage(OrderModel orderModel, List<int> roomNumbers)
         {
             return View();
         }
