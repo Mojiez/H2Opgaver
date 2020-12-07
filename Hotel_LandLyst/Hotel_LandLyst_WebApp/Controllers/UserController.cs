@@ -12,6 +12,7 @@ namespace Hotel_LandLyst_WebApp.Controllers
     //This class is responsible for user control
     public class UserController : Controller
     {
+        private List<RoomModel> Rooms;
         private IConfiguration userConfiguration;
         public UserController(IConfiguration configuration)
         {
@@ -32,10 +33,20 @@ namespace Hotel_LandLyst_WebApp.Controllers
             }
             return View(orderModel);
         }
+        [HttpPost]
+        public IActionResult AddToCart(RoomModel roomModel, int id)
+        {
+            if (Rooms == null)
+                Rooms = new List<RoomModel>();
+
+            Rooms.Add(roomModel);
+            return View("OrderPage");
+        }
 
         [HttpPost]
-        public IActionResult OrderPage(OrderModel orderModel, List<int> roomNumbers)
+        public IActionResult OrderPage(OrderModel orderModel, string rooms)
         {
+
             return View();
         }
 

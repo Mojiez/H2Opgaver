@@ -3,12 +3,9 @@
 @{
     ViewData["Title"] = "OrderPage";
 }
-
-<h1>OrderPage</h1>
-<hr />
 <p>
     <button class="btn btn-primary" style="border-radius:50%;" type="button" data-toggle="collapse" data-target="#collapseBasket" aria-expanded="false" aria-controls="collapseBasket">
-        <img src="~/images/kurv-ikon.png" width="50" height="50"/>
+        <img src="~/images/kurv-ikon.png" width="50" height="50" />
     </button>
 </p>
 <div class="collapse container" id="collapseBasket">
@@ -86,8 +83,7 @@
                     </table>
                     <ul style="display: inline-block; list-style-type:none;">
                         <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
-
-                            <button onclick="addItem(@Model.Rooms[i].Number)">Tilføj til kurv</button>
+                            <button onclick="addItem(Model.Rooms[i].Number)">Tilføj til kurv</button>
                         </li>
                     </ul>
                 </div>
