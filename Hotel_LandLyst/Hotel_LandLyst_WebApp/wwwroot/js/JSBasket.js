@@ -1,5 +1,4 @@
-﻿
-function addItem(value) {
+﻿function addItem(value) {
     //gets the html element with the right id
     var div = document.getElementById("basket");
     var ul = document.createElement("ul")
