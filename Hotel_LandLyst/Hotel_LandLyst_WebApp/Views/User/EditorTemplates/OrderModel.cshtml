@@ -1,0 +1,11 @@
+﻿@model OrderModel
+
+<b>@Model.Rooms</b>
+
+@Html.HiddenFor(m => m.CheckInDate)
+@Html.HiddenFor(m => m.CheckOutDate)
+@Html.HiddenFor(m => m.Costumer)
+@Html.HiddenFor(m => m.RentingPeriod)
+@Html.HiddenFor(m => m.Rooms)
+@Html.HiddenFor(m => m.BookedRooms)
+@Html.HiddenFor(m => m.TotalPrice)

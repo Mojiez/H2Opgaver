@@ -23,8 +23,8 @@ namespace Hotel_LandLyst_WebApp
             services.AddControllersWithViews();
             services.AddMvc();
             string conString = this.Configuration.GetConnectionString("myConnection");
-            services.AddMvc();
-
+            
+            
             // Add application services
             
             services.AddConnections();

@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,10 +8,13 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/LoginStyle.css" />
 </head>
-<body class="bg-info">
+<body style="background-color:deepskyblue" id="indexbody">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav id="indexheader" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color:dimgray">
             <div class="container">
+                <button onclick="changeColor()">
+                    Krøllvision
+                </button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,52 +25,52 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="OrderPage">Bestil</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="BookingPage">Bestil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="RoomPlan">Værelsesoversigt</a>
                         </li>
                         <!--
-                        <li class="nav-item">
-                            <p>
-                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
-                                    Login
-                                </button>
-                            </p>
-                            <div class="collapse " id="collapseLogin">
-                                <div class="card card-body bg-info">
-                                    //using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
-                                    {
-                                        <ul>
-                                            <li class="nav-item" style="display:block;">
-                                                <label for="uname" style="margin-left:30px;"><b>Email</b></label>
-                                                <input style="" type="text" asp-for="Email" required autocomplete="on" placeholder="Email eller Brugernavn" />
-                                            </li>
-                                            <li class="nav-item" style="display:block;">
-                                                <label for="upass"><b>Password</b></label>
-                                                <input type="password" asp-for="Password" required autocomplete="on" />
-                                            </li>
-                                            <li class="nav-item" style="display:block;">
-                                                <button type="submit" class="btn-outline-dark">Login</button>
-                                            </li>
-                                        </ul>
-                                    }
-                                </div>
-                            </div>
-                        </li>  
-                        -->
+            <li class="nav-item">
+                <p>
+                    <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
+                        Login
+                    </button>
+                </p>
+                <div class="collapse " id="collapseLogin">
+                    <div class="card card-body bg-info">
+                        //using (Html.BeginForm("LoginPage", "Login", FormMethod.Post))
+                        {
+                            <ul>
+                                <li class="nav-item" style="display:block;">
+                                    <label for="uname" style="margin-left:30px;"><b>Email</b></label>
+                                    <input style="" type="text" asp-for="Email" required autocomplete="on" placeholder="Email eller Brugernavn" />
+                                </li>
+                                <li class="nav-item" style="display:block;">
+                                    <label for="upass"><b>Password</b></label>
+                                    <input type="password" asp-for="Password" required autocomplete="on" />
+                                </li>
+                                <li class="nav-item" style="display:block;">
+                                    <button type="submit" class="btn-outline-dark">Login</button>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </li>
+            -->
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" id="colorChange">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted bg-dark">
+    <footer id="indexfooter" class="border-top footer text-muted" style="background-color:dimgray">
         <div class="container">
             &copy; 2020 - Hotel LandLyst - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

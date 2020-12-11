@@ -3,16 +3,15 @@
 @{
     ViewData["Title"] = "OrderPage";
 }
-<p>
-    <button class="btn btn-primary" style="border-radius:50%;" type="button" data-toggle="collapse" data-target="#collapseBasket" aria-expanded="false" aria-controls="collapseBasket">
+<form asp-action="BookingConfirm">
+    <button class="btn btn-primary" style="border-radius:50%;" type="submit">
         <img src="~/images/kurv-ikon.png" width="50" height="50" />
     </button>
-</p>
-<div class="collapse container" id="collapseBasket">
-    <div id="basket" class="card card-body bg-primary list-group-horizontal row">
-
+    <div class="list-group-horizontal">
+        <div class="list-group-item">@Html.DisplayNameFor(m => m.BookedRooms)</div>
+        <div class="list-group-item">@Html.DisplayFor(m => m.BookedRooms.Count)</div>
     </div>
-</div>
+</form>
 
 <div class="container bg-dark">
     <div class="row">
@@ -83,7 +82,43 @@
                     </table>
                     <ul style="display: inline-block; list-style-type:none;">
                         <li style="margin-left: 10px; display: inline-block; list-style-type: none;">
-                            <button onclick="addItem(@Model.Rooms[i].Number)">Tilføj til kurv</button>
+                            <form asp-action="OrderPage">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="CheckInDate" class="control-label" hidden></label>
+                                    <input asp-for="CheckInDate" class="form-control" hidden />
+                                    <span asp-validation-for="CheckInDate" class="text-danger" hidden></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CheckOutDate" class="control-label" hidden></label>
+                                    <input asp-for="CheckOutDate" class="form-control" hidden />
+                                    <span asp-validation-for="CheckOutDate" class="text-danger" hidden></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalPrice" class="control-label" hidden></label>
+                                    <input asp-for="TotalPrice" class="form-control" hidden />
+                                    <span asp-validation-for="TotalPrice" class="text-danger" hidden></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="RentingPeriod" class="control-label" hidden></label>
+                                    <input asp-for="RentingPeriod" class="form-control" hidden />
+                                    <span asp-validation-for="RentingPeriod" class="text-danger" hidden></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Rooms" class="control-label" hidden></label>
+                                    <input asp-for="Rooms" value="@Model.Rooms" class="form-control" hidden />
+                                    <span asp-validation-for="Rooms" class="text-danger" hidden></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="BookedRooms" class="control-label" hidden></label>
+                                    <input asp-for="BookedRooms" class="form-control" hidden />
+                                    <span asp-validation-for="BookedRooms" class="text-danger" hidden></span>
+                                </div>
+                                <input type="number" value="@Model.Rooms[i].Number" hidden name="roomNumber" />
+                                <div class="form-group">
+                                    <input type="submit" value="Tilføj rum til kurv" class="btn btn-primary" />
+                                </div>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -91,4 +126,3 @@
         }
     </div>
 </div>
-<script src="~/js/JSBasket.js"></script>

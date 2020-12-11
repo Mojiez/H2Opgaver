@@ -7,48 +7,71 @@ using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Web;
+using System.Globalization;
+
 namespace Hotel_LandLyst_WebApp.Controllers
 {
     //This class is responsible for user control
     public class UserController : Controller
     {
-        private List<RoomModel> Rooms;
+        private static OrderModel order;
         private IConfiguration userConfiguration;
         public UserController(IConfiguration configuration)
         {
             userConfiguration = configuration;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        [HttpGet]
-        public IActionResult OrderPage()
+        //used for room selection for the user
+        [HttpPost]
+        public IActionResult OrderPage(OrderModel orderModel, int roomNumber)
         {
-            OrderModel orderModel = new OrderModel() { Rooms = DalManager.Manager.GetRooms(userConfiguration) };
-            foreach (var item in orderModel.Rooms)
+            if (order == null || order.Rooms.Count < 10)
             {
-                item.CalculatePriceTotal();
+                order = new OrderModel() { Rooms = DalManager.Manager.GetRooms(userConfiguration), BookedRooms = new List<int>() };
+                order.CheckInDate = orderModel.CheckInDate;
+                order.CheckOutDate = orderModel.CheckOutDate;
+                if (order.Rooms[0].PricePerNight <= 695)
+                    foreach (var item in order.Rooms)
+                    {
+                        item.CalculatePriceTotal();
+                    }
             }
+            if (roomNumber != 0)
+                order.BookedRooms.Add(roomNumber);
+
+            orderModel = order;
             return View(orderModel);
         }
-        [HttpPost]
-        public IActionResult AddToCart(RoomModel roomModel, int id)
-        {
-            if (Rooms == null)
-                Rooms = new List<RoomModel>();
 
-            Rooms.Add(roomModel);
-            return View("OrderPage");
+        //used to get renting period
+        public IActionResult BookingPage()
+        {
+            return View(new OrderModel() { CheckInDate = DateTime.Now.Date, CheckOutDate = DateTime.Now.Date });
         }
 
-        [HttpPost]
-        public IActionResult OrderPage(OrderModel orderModel, string rooms)
+        public IActionResult BookingConfirm()
         {
+            List<RoomModel> controlList = new List<RoomModel>();
+            foreach (var item in order.BookedRooms)
+            {
+                controlList.Add(order.Rooms.Where(x => x.Number == item).FirstOrDefault());
+            }
+            order.Rooms = controlList;
+            order.RentingPeriod = order.CheckOutDate.Day - order.CheckInDate.Day;
+            order.CalculatePriceTotal();
+            return View(order);
+        }
 
+        public IActionResult BookingConfirmed(CostumerModel costumerModel)
+        {
+            order.Costumer = costumerModel;
+            DalManager.Manager.SaveNewOrder(order, userConfiguration);
             return View();
         }
 
+        public IActionResult CostumerInfo()
+        {
+            return View();
+        }
     }
 }

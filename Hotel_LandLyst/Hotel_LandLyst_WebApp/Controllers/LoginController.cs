@@ -1,13 +1,9 @@
 ﻿using Hotel_LandLyst_WebApp.Dal;
-using Hotel_LandLyst_WebApp.Logic.Encryption;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hotel_LandLyst_WebApp.Controllers
 {
@@ -28,8 +24,8 @@ namespace Hotel_LandLyst_WebApp.Controllers
         [HttpPost]
         public IActionResult LoginPage(LoginModel loginModel)
         {
-            PasswordEncryption passwordEncryption = new PasswordEncryption();
-            List<EmployeeModel> employeeModels = DalManager.Manager.GetEmployees(loginConfig);
+            
+            
            
             return Redirect("Error");
         }

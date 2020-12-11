@@ -7,23 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Hotel_LandLyst_WebApp.Models;
 using Microsoft.Extensions.Configuration;
+using Hotel_LandLyst_WebApp.Dal;
 
 namespace Hotel_LandLyst_WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private string conString;
+        private IConfiguration homeConfiguration;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             //imports connection string from appsettings 
-            conString = configuration.GetConnectionString("myConnection");
+            homeConfiguration = configuration;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            
             return View();
         }
 

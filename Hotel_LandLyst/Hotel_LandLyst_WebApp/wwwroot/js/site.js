@@ -15,6 +15,11 @@ for (i = 0; i < coll.length; i++) {
         } else {
             content.style.display = "block";
         }
-
     })
+};
+
+function changeColor  () {
+    document.getElementById("indexbody").style.backgroundColor = "brown";
+    document.getElementById("indexheader").style.backgroundColor = "orange";
+    document.getElementById("indexfooter").style.backgroundColor = "orange";
 };

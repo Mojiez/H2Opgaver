@@ -10,6 +10,12 @@ namespace Hotel_LandLyst_WebApp.Logic
 {
     public class CommandBuilder : IGetCommands
     {
+        /// <summary>
+        /// Sets the names on the query uses the object to find the property names
+        /// </summary
+        /// <param name="obj"></param>
+        /// <param name="sqlCommand"></param>
+        /// <returns></returns>
         public SqlCommand BuildObjectString(object obj, string sqlCommand)
         {
             PropertyInfo[] propertyInfo = obj.GetType().GetProperties();
@@ -28,6 +34,14 @@ namespace Hotel_LandLyst_WebApp.Logic
             return new SqlCommand(sqlCommand);
         }
 
+
+        /// <summary>
+        /// Find the objects property names and values
+        /// the it creates a new sql parameter with the value of the object this method will ignore lists
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public SqlCommand InsertDataValues(SqlCommand command, object obj)
         {
             PropertyInfo[] propertyInfos = obj.GetType().GetProperties();

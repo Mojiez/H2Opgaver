@@ -1,0 +1,84 @@
+﻿@model OrderModel
+
+<form asp-action="CostumerInfo">
+    <button class="btn btn-outline-success" type="submit">Godkend</button>
+</form>
+<form asp-action="BookingPage">
+    <button class="btn btn-outline-danger" type="submit">Fortryd</button>
+</form>
+<div>
+    <label asp-for="TotalPrice"></label>
+    @Html.DisplayFor(x => x.TotalPrice)
+</div>
+
+<div class="container bg-dark">
+    <div class="row">
+        @for (int i = 0; i < Model.Rooms.Count; i++)
+        {
+            <div class="col-md-4">
+                <div class="table-responsive">
+                    <table class="table-bordered w-100 p-3" style="text-align:center;">
+                        <thead>
+                            <tr class="bg-info">
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Number)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].PricePerNight)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Clean)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(x => x.Rooms[i].Rented)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Number)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].PricePerNight)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Clean)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => x.Rooms[i].Rented)
+                                </td>
+                            </tr>
+                        </tbody>
+                        @for (int j = 0; j < Model.Rooms[i].Furnitures.Count; j++)
+                        {
+                            <thead>
+                                <tr class="bg-white">
+                                    @if (j == 0)
+                                    {
+                                        <th>
+                                            @Html.DisplayNameFor(x => x.Rooms[i].Furnitures[j].Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(x => x.Rooms[j].Furnitures[j].Price)
+                                        </th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td>
+                                        @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => x.Rooms[i].Furnitures[j].Price)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>    
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -20,7 +20,7 @@ namespace Hotel_LandLyst_WebApp.Models
         public bool Rented { get; set; }
         [DisplayName("Pris per nat")]
         public float PricePerNight { get; set; } 
-        public List<FurnitureModel> Furnitures { get; set; }
+        public List<FurnitureModel> Furnitures { get; set; } = new List<FurnitureModel>();
 
         public RoomModel(bool clean, bool rented, List<FurnitureModel> furnitures, int number, float pricePerNight)
         {
@@ -38,6 +38,7 @@ namespace Hotel_LandLyst_WebApp.Models
 
         public float CalculatePriceTotal()
         {
+            if(PricePerNight <= 695)
             foreach (var item in Furnitures)
             {
                 PricePerNight += item.Price;
