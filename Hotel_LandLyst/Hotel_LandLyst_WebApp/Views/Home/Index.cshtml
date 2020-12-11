@@ -3,9 +3,9 @@
 }
 
 <div class="container-fluid">
-        <h1 class="display-4">Velkommen til LandLyst kro og hotel</h1>
+    <h1 class="display-4">Velkommen til LandLyst kro og hotel</h1>
     <div>
-        
+
         <ol style="display:inline-block;">
             <li>
                 <h5>Over 50 værelser</h5>
@@ -21,9 +21,50 @@
             </li>
         </ol>
     </div>
-    <div class="container-fluid">
-        <img src="~/images/Hotelbillede.png" style="width:500px; height:450px;"/>
-    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/images/Hotelbillede.png" alt="Hotelet" style="width:100%;">
+            </div>
+
+            <div class="carousel-item item">
+                <img src="~/images/BadeVærelse.png" alt="Badeværelse" style="width:100%;">
+            </div>
+
+            <div class="carousel-item item">
+                <img src="~/images/Værelse1.png" alt="Værelses billed 1" style="width:100%;">
+            </div>
+
+
+            <div class="carousel-item item">
+                <img src="~/images/Værelse1.png" alt="Værelses billed 2" style="width:100%;">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('myCarousel').carousel('cycle')
+    })
+</script>
+
+
 
