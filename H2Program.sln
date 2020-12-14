@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading", "Threading\Thre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading_Temp", "Threading_Temp\Threading_Temp.csproj", "{AB290DF2-F262-4660-A5BA-05D108243D66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading_Input", "Threading_Input\Threading_Input.csproj", "{518D42AA-DEEA-4704-A97C-A6BE2BD20CEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{AB290DF2-F262-4660-A5BA-05D108243D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB290DF2-F262-4660-A5BA-05D108243D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB290DF2-F262-4660-A5BA-05D108243D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{518D42AA-DEEA-4704-A97C-A6BE2BD20CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{518D42AA-DEEA-4704-A97C-A6BE2BD20CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{518D42AA-DEEA-4704-A97C-A6BE2BD20CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{518D42AA-DEEA-4704-A97C-A6BE2BD20CEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,15 +5,15 @@ namespace Threading_Temp
 {
     class Func
     {
-        public object temp { get; set; }
+        public int temp { get; set; }
         public void GenerateTemp()
         {
             while (Thread.CurrentThread.IsAlive)
             {
                 Random random = new Random();
-                temp = random.Next(-20, 120);
                 Console.WriteLine($"{temp}");
-                Thread.Sleep(2000);
+                temp = random.Next(-20, 120);
+                Thread.Sleep(300);
 
             }
         }
@@ -23,23 +23,24 @@ namespace Threading_Temp
     {
         static void Main(string[] args)
         {
-            int input = 0, alertCount = 0;
+            int alertCount = 0;
+            bool running = true;
             Func func = new Func();
             Thread writer = new Thread(func.GenerateTemp);
-
+            writer.IsBackground = true;
             writer.Name = "Writer";
-            writer.Start();
-            while (writer.IsAlive)
-            {
 
-                input = int.Parse(func.temp.ToString());
-                if (input > 100 || input < 0)
+            writer.Start();
+            while (running)
+            {
+                if (func.temp > 100 || func.temp < 0)
                 {
+                    Thread.Sleep(100);
                     alertCount++;
                     Console.WriteLine("Alert");
-                    if (alertCount == 4)
+                    if (alertCount == 3)
                     {
-                        writer.Abort();
+                        running = false;
                     }
                 }
             }
