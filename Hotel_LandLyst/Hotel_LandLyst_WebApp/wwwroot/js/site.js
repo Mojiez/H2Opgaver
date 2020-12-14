@@ -23,3 +23,7 @@ function changeColor  () {
     document.getElementById("indexheader").style.backgroundColor = "orange";
     document.getElementById("indexfooter").style.backgroundColor = "orange";
 };
+
+function nextpicture(e) {
+    $('.carousel').carousel('next');
+}

@@ -11,12 +11,11 @@ namespace Hotel_LandLyst_WebApp.Dal
 {
     public static class DBManager
     {
-        private static IConfiguration configuration1;
         private static IGetCommands commandBuilder = new CommandBuilder();
 
-        private static void SendToDb(SqlCommand sqlCommand)
+        private static void SendToDb(SqlCommand sqlCommand, IConfiguration configuration)
         {
-            SqlConnection sqlConnection = new SqlConnection(configuration1.GetConnectionString("myConnection"));
+            SqlConnection sqlConnection = new SqlConnection(configuration.GetConnectionString("myConnection"));
             sqlConnection.Open();
             sqlCommand.Connection = sqlConnection;
             sqlCommand.ExecuteNonQuery();
@@ -26,10 +25,10 @@ namespace Hotel_LandLyst_WebApp.Dal
         #region Room
         public static void SaveRoomToDb(RoomModel roomModel, IConfiguration configuration)
         {
-            configuration1 = configuration;
+            
             SqlCommand command = ((CommandBuilder)commandBuilder).BuildObjectString(roomModel, commandBuilder.InsertInto(roomModel.GetType().Name));
             ((CommandBuilder)commandBuilder).InsertDataValues(command, roomModel);
-            SendToDb(command);
+            SendToDb(command, configuration);
         }
 
         public static List<RoomModel> CombineRoomAndFurniture(List<RoomModel> rooms, List<FurnitureModel> furnitures, IConfiguration configuration)
@@ -128,11 +127,9 @@ namespace Hotel_LandLyst_WebApp.Dal
 
         public static void SaveFurnitureToDb(FurnitureModel furnitureModel, IConfiguration configuration)
         {
-            configuration1 = configuration;
-
             SqlCommand command = ((CommandBuilder)commandBuilder).BuildObjectString(furnitureModel, commandBuilder.InsertInto(furnitureModel.GetType().Name));
             ((CommandBuilder)commandBuilder).InsertDataValues(command, furnitureModel);
-            SendToDb(command);
+            SendToDb(command, configuration);
         }
 
         #endregion
