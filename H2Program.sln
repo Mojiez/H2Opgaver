@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadPoolDemo", "ThreadPoo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading_Locks", "Threading_Locks\Threading_Locks.csproj", "{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dining_Philophers", "Dining_Philophers\Dining_Philophers.csproj", "{4EFDB309-306A-452C-9AD9-B00E20B63295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
