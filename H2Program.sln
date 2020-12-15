@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading_Locks", "Threadin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dining_Philophers", "Dining_Philophers\Dining_Philophers.csproj", "{4EFDB309-306A-452C-9AD9-B00E20B63295}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer_Consumer", "Producer_Consumer\Producer_Consumer.csproj", "{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EFDB309-306A-452C-9AD9-B00E20B63295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
