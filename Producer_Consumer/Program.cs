@@ -33,7 +33,7 @@ namespace Producer_Consumer
             int consumerCount = 0;
             Thread producer = new Thread(Producer);
             producer.Start();
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             while (true)
             {
                 if (itemCount > 0)
@@ -43,6 +43,7 @@ namespace Producer_Consumer
                     consumer.Start();
                     Console.WriteLine($"new consumer number {consumerCount} enters");
                 }
+                Thread.Sleep(100);
             }
         }
 
@@ -104,7 +105,6 @@ namespace Producer_Consumer
         {
             while (true)
             {
-
                 lock (controlLock)
                 {
                     for (int i = 0; i < basket.Length; i++)
@@ -119,7 +119,6 @@ namespace Producer_Consumer
                     }
                 }
                 Sleep();
-
             }
 
         }
