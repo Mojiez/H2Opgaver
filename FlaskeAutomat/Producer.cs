@@ -34,7 +34,7 @@ namespace FlaskeAutomat
         {
             while (Asleep == true)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(10);
             }
         }
     }

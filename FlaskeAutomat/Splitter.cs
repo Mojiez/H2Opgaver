@@ -13,7 +13,7 @@ namespace FlaskeAutomat
         {
             while (true)
             {
-                while (sodaBottles.Count < 2 || beerBottles.Count < 2)
+                while (sodaBottles.Count < 5 || beerBottles.Count < 5)
                 {
                     Queue<Bottle> copyList = Producer.Bottles;
                     lock (itemLock)

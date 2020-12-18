@@ -27,13 +27,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Threading_Input", "Threadin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadPoolDemo", "ThreadPool\ThreadPoolDemo.csproj", "{18510CFB-49B2-41B8-83A8-CC0AB6F8E554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading_Locks", "Threading_Locks\Threading_Locks.csproj", "{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Threading_Locks", "Threading_Locks\Threading_Locks.csproj", "{292B8B7F-D90A-4105-A32C-71AF48B2C4D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dining_Philophers", "Dining_Philophers\Dining_Philophers.csproj", "{4EFDB309-306A-452C-9AD9-B00E20B63295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dining_Philophers", "Dining_Philophers\Dining_Philophers.csproj", "{4EFDB309-306A-452C-9AD9-B00E20B63295}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer_Consumer", "Producer_Consumer\Producer_Consumer.csproj", "{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer_Consumer", "Producer_Consumer\Producer_Consumer.csproj", "{9BC82BDF-23E4-4154-B0E3-720EDC4DD7B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlaskeAutomat", "FlaskeAutomat\FlaskeAutomat.csproj", "{5DE4D877-8285-4157-B365-2606A29C9710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlaskeAutomat", "FlaskeAutomat\FlaskeAutomat.csproj", "{5DE4D877-8285-4157-B365-2606A29C9710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BagageSorting", "BagageSorting\BagageSorting.csproj", "{7D2A4ECE-E6C8-4AD1-AD6C-FEFF33EDB0D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{5DE4D877-8285-4157-B365-2606A29C9710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE4D877-8285-4157-B365-2606A29C9710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DE4D877-8285-4157-B365-2606A29C9710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2A4ECE-E6C8-4AD1-AD6C-FEFF33EDB0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2A4ECE-E6C8-4AD1-AD6C-FEFF33EDB0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2A4ECE-E6C8-4AD1-AD6C-FEFF33EDB0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2A4ECE-E6C8-4AD1-AD6C-FEFF33EDB0D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

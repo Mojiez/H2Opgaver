@@ -36,13 +36,17 @@ namespace FlaskeAutomat
             Random random = new Random();
             while (true)
             {
-                Thread consumer = new Thread(() =>
+                if(Splitter.beerBottles.Count > 1)
                 {
-                    Consumer consumer1 = new Consumer() { TypeOfDrink = Producer.itemTypes[random.Next(2)] };
-                    consumer1.BuyABottle(itemLock);
-                });
-                consumer.Start();
-                Thread.Sleep(100);
+                    Thread consumer = new Thread(() =>
+                    {
+                        Consumer consumer1 = new Consumer() { TypeOfDrink = Producer.itemTypes[random.Next(2)] };
+                        consumer1.BuyABottle(itemLock);
+                    });
+                    consumer.Start();
+                }
+                
+                Thread.Sleep(50);
             }
 
         }
