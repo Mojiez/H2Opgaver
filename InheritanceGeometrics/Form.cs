@@ -4,6 +4,8 @@ using System.Text;
 
 namespace InheritanceGeometrics
 {
+    
+    //Det er farligt at antage at alle former vil have en længde..... det har en cirkel f.eks. ikke
     class Form
     {
         private double lenghtA;
