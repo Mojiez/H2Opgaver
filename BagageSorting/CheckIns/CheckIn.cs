@@ -2,14 +2,18 @@
 using BagageSorting.Reservations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace BagageSorting.CheckIns
 {
     public class CheckIn : ITimeStamp
     {
         public List<Reservation> reservations;
-        public List<Bagage> bagages;
-        public static States States;
+        private List<Bagage> bagages;
+        public static States State;
+        public int Number { get; set; }
+        private Stopwatch stopwatch = new Stopwatch();
+        private TimeSpan time = new TimeSpan(0, 1, 0);
 
         public CheckIn()
         {
@@ -17,18 +21,29 @@ namespace BagageSorting.CheckIns
             bagages = new List<Bagage>();
         }
 
-        public void GetReservertionsForNextTakeOff()
+        public void Open()
         {
-            foreach (var item in bagages)
+            stopwatch.Start();
+            while (stopwatch.ElapsedMilliseconds < time.TotalMilliseconds)
             {
-                Stamp(item);
+                GetReservertionsForNextTakeOff();
             }
+            Close();
         }
 
-        public void CheckInBags(ReservationManager reservationManager)
+        public void Close()
         {
-            ReservationManager.State = States.Closed;
-            GetReservertionsForNextTakeOff();
+            State = States.Closed;
+        }
+
+        public void GetReservertionsForNextTakeOff()
+        {
+            for (int i = 0; i < reservations.Count; i++)
+            {
+                if(reservations[].Departure == )
+                Stamp(new Bagage() { Number = reservations[i].PassangerNumber });
+                Console.WriteLine($"Passanger checkin bag at checkin {Number}");
+            }
         }
 
         public Bagage Stamp(Bagage bagage)

@@ -11,31 +11,33 @@ namespace BagageSorting.Reservations
     public class ReservationManager
     {
         public List<FlightPlan> Departures { get; set; }
-        private CheckIn[] CheckIns;
         public static States State { get; set; }
         static Stopwatch stopwatch;
+
+        private CheckIn[] _checkIns;
         private TimeSpan timespan = new TimeSpan(0, 5, 0);
         private Gate[] _gates;
-
+        private int[] checkCount = { 0, 0, 0 };
         private FlightPlan[] Gate1FlightPlans = { new FlightPlan() { FlightDeparture = new TimeSpan(16, 25, 00), GateNumber = 1 }, new FlightPlan() { FlightDeparture = new TimeSpan(18, 10, 0), GateNumber = 1 }, new FlightPlan() { FlightDeparture = new TimeSpan(20, 15, 0), GateNumber = 1 } };
         private FlightPlan[] Gate2FlightPlans = { new FlightPlan() { FlightDeparture = new TimeSpan(12, 25, 00), GateNumber = 2 }, new FlightPlan() { FlightDeparture = new TimeSpan(16, 45, 0), GateNumber = 2 }, new FlightPlan() { FlightDeparture = new TimeSpan(14, 35, 0), GateNumber = 2 } };
         private FlightPlan[] Gate3FlightPlans = { new FlightPlan() { FlightDeparture = new TimeSpan(17, 25, 00), GateNumber = 3 }, new FlightPlan() { FlightDeparture = new TimeSpan(22, 15, 0), GateNumber = 3 }, new FlightPlan() { FlightDeparture = new TimeSpan(23, 55, 0), GateNumber = 3 } };
+        private object _Lock;
+
         readonly string[] fNames = { "Jan", "Dan", "Anton", "Børge", "Jasmin", "Lone", "Bente", "Kim", "Tove" };
         readonly string[] lNames = { "Nilsen", "Henningsen", "Hansen", "Jensen", "Mikkelsen", "Thorsen", "Therkildsen" };
-        private int gate1Count = 0, gate2Count = 0, gate3Count = 0;
 
         public ReservationManager(CheckIn[] checkIns)
         {
-            CheckIns = checkIns;
+            _checkIns = checkIns;
         }
 
-        public void ChangeDepartures(object flightLock)
+        public void ChangeDepartures()
         {
             Random random = new Random();
             Departures = new List<FlightPlan>();
 
             stopwatch = new Stopwatch();
-            lock (flightLock)
+            lock (_Lock)
             {
                 Departures = new List<FlightPlan>() { Gate1FlightPlans[random.Next(3)], Gate2FlightPlans[random.Next(3)], Gate3FlightPlans[random.Next(3)] };
                 for (int i = 0; i < _gates.Length; i++)
@@ -50,26 +52,39 @@ namespace BagageSorting.Reservations
 
             stopwatch.Start();
             State = States.Open;
-            Open(flightLock, _gates);
+            Open(_Lock, _gates, _checkIns);
         }
 
         /// <summary>
         /// This method will open the system to reservations
         /// </summary>
-        public void Open(object flightLock, Gate[] gates)
+        public void Open(object flightLock, Gate[] gates, CheckIn[] checkIns)
         {
+            _checkIns = checkIns;
             _gates = gates;
+            _Lock = flightLock;
+            if (Departures == null || Departures.Count == 0)
+            {
+                ChangeDepartures();
+            }
             while (stopwatch.ElapsedMilliseconds < timespan.TotalMilliseconds)
             {
                 Console.WriteLine(stopwatch.ElapsedMilliseconds);
                 Thread.Sleep(100);
-                if (State == States.Closed)
+                if (State == States.Closed || checkCount[0] == 150 && checkCount[1] == 150 && checkCount[2] == 150)
                 {
-                    Closed(flightLock);
+                    ThreadPool.QueueUserWorkItem((WaitCallback) =>
+                    {
+                        _checkIns[0].Open();
+                        _checkIns[0].Open();
+                        _checkIns[0].Open();
+                    });
+                    State = States.Closed;
+                    Closed();
                 }
                 RandomReservationCreation(flightLock);
             }
-            ChangeDepartures(flightLock);
+            ChangeDepartures();
         }
 
         /// <summary>
@@ -77,13 +92,13 @@ namespace BagageSorting.Reservations
         /// Takes a fligtLock object to ensure that the manager have a lock to prevent a dead lock
         /// </summary>
         /// <param name="flightLock"></param>
-        public void Closed(object flightLock)
+        public void Closed()
         {
             while (State == States.Closed)
             {
                 Thread.SpinWait(10);
             }
-            ChangeDepartures(flightLock);
+            ChangeDepartures();
         }
 
         /// <summary>
@@ -94,13 +109,13 @@ namespace BagageSorting.Reservations
         {
             Random random = new Random();
             Reservation reservation = new Reservation() { Departure = Departures[random.Next(3)].FlightDeparture, Name = fNames[random.Next(7)] + " " + lNames[random.Next(7)], PassangerNumber = random.Next(99999) };
-            
+
             lock (flightLock)
             {
                 Console.WriteLine(reservation.ToString());
                 SendReservationToCheckIn(reservation);
             }
-            Open(flightLock, _gates);
+            Open(flightLock, _gates, _checkIns);
         }
 
         /// <summary>
@@ -109,13 +124,15 @@ namespace BagageSorting.Reservations
         /// <param name="reservation"></param>
         private void SendReservationToCheckIn(Reservation reservation)
         {
-            for (int i = 0; i < _gates.Length; i++)
+            for (int i = 0; i < _checkIns.Length; i++)
             {
-                if (reservation.Departure == _gates[i].flightPlan.FlightDeparture && _gates[i].reservations.Count < 150)
+                if (reservation.Departure == _gates[i].flightPlan.FlightDeparture && checkCount[i] < 150)
                 {
-                    _gates[i].reservations.Add(reservation);
+                    _checkIns[i].reservations.Add(reservation);
+                    checkCount[i]++;
                 }
             }
+            Open(_Lock, _gates, _checkIns);
         }
     }
 }

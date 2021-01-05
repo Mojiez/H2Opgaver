@@ -25,6 +25,7 @@ namespace BagageSorting.Terminals
             for (int i = 0; i < reservations.Count; i++)
             {
                 Stamp(new Bagage() { Number = reservations[i].PassangerNumber });
+                Console.WriteLine($"Passanger checkin at gate{Number}");
             }
         }
 

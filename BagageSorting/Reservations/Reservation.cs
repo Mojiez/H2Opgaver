@@ -8,6 +8,7 @@ namespace BagageSorting.Reservations
         public string Name { get; set; }
         public int PassangerNumber { get; set; }
         private static int IdCheccUp { get; set; }
+
         public Reservation()
         {
             PassangerNumber = IdCheccUp;
