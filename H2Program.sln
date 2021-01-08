@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BagageSorting", "BagageSort
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tilfældigheder", "Tilfældigheder\Tilfældigheder.csproj", "{5F223D7A-A289-41D7-9C4C-BC9761D8E9FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymetriskKryptering", "SymetriskKryptering\SymetriskKryptering.csproj", "{2B3EB6EA-0CA5-4CA3-8B21-C03E632AA70C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{5F223D7A-A289-41D7-9C4C-BC9761D8E9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F223D7A-A289-41D7-9C4C-BC9761D8E9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F223D7A-A289-41D7-9C4C-BC9761D8E9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3EB6EA-0CA5-4CA3-8B21-C03E632AA70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3EB6EA-0CA5-4CA3-8B21-C03E632AA70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3EB6EA-0CA5-4CA3-8B21-C03E632AA70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3EB6EA-0CA5-4CA3-8B21-C03E632AA70C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
