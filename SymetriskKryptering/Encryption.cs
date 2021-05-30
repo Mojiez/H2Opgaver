@@ -10,37 +10,27 @@ namespace SymetriskKryptering
     {
         SymmetricAlgorithm algorithm;
         
-        public string ConvertInput(string cipher)
+        public enum Type
         {
-            if (cipher == "1")
-            {
-                cipher = "DES";
-            }
-            else if (cipher == "2")
-            {
-                cipher = "3DES";
-            }
-            else
-            {
-                cipher = "Rijndael";
-            }
-            return cipher;
+            DES,
+            TripleDES,
+            Rijndael
         }
-
-        public void Generate(string cipher) 
+          
+        public void Generate(Type type) 
         {
-            cipher = ConvertInput(cipher);
-            switch (cipher)
+            
+            switch (type)
             {
-                case "DES":
+                case Type.DES:
                     algorithm = DES.Create();
                     break;
 
-                case "3DES":
+                case Type.TripleDES:
                     algorithm = TripleDES.Create();
                     break;
 
-                case "Rijndael":
+                case Type.Rijndael:
                     algorithm = Rijndael.Create();
                     break;
 
@@ -48,13 +38,23 @@ namespace SymetriskKryptering
                     break;
             }
             algorithm.GenerateIV();
-            //algorithm.GenerateKey();
+            algorithm.GenerateKey();
+        }
+
+        public byte[] ConvertToByte(string message)
+        {
+            return Encoding.ASCII.GetBytes(message);
+        }
+
+        public string ConvertByteArrayToString(byte[] byteArray)
+        {
+            return Encoding.ASCII.GetString(byteArray);
         }
 
         public byte[] Encrypt(byte[] message)
         {
             MemoryStream memory = new MemoryStream();
-            CryptoStream crypto = new CryptoStream(memory, algorithm.CreateEncryptor(), CryptoStreamMode.Write);
+            CryptoStream crypto = new CryptoStream(memory, algorithm.CreateEncryptor(), CryptoStreamMode.Write, false);
 
             crypto.Write(message, 0, message.Length);
             crypto.Close();
@@ -66,7 +66,7 @@ namespace SymetriskKryptering
             byte[] text = new byte[message.Length];
 
             MemoryStream memory = new MemoryStream(message);
-            CryptoStream crypto = new CryptoStream(memory, algorithm.CreateDecryptor(), CryptoStreamMode.Read);
+            CryptoStream crypto = new CryptoStream(memory, algorithm.CreateDecryptor(), CryptoStreamMode.Read, false);
 
             crypto.Read(text, 0, message.Length);
             crypto.Close();

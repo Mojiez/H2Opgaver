@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MyBanker.Cards;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using static MyBanker.Cards.Card;
 
 namespace MyBanker.Generators
 {
@@ -15,21 +17,21 @@ namespace MyBanker.Generators
         /// </summary>
         /// <param name="card"></param>
         /// <returns></returns>
-        public static int GetPrefix(string card)
+        public static int GetPrefix(Card.Type type)
         {
             Random random = new Random();
-            if (card == "VISAElectron")
+            if (type == Card.Type.VISAElectron)
                 return visaElectron[random.Next(visaElectron.Length + 1)];
 
-            else if (card == "VISA")
+            else if (type == Card.Type.VISADankort)
                 return 4;
 
-            else if (card == "MasterCard")
+            else if (type == Card.Type.Mastercard)
                 return masterCard[random.Next(masterCard.Length + 1)];
 
-            else if (card == "Maestro")
+            else if (type == Card.Type.Maestro)
                 return maestro[random.Next(maestro.Length + 1)];
-            else if (card == "WidthDrawalCard")
+            else if (type == Card.Type.DebitCard)
                 return 2400;
 
             else return 0;
@@ -41,10 +43,10 @@ namespace MyBanker.Generators
         /// <param name="cardType"></param>
         /// <param name="numberofDigits"></param>
         /// <returns></returns>
-        public static string GenerateCardNumber(string cardType, int numberofDigits)
+        public static string GenerateCardNumber(Card.Type type, int numberofDigits)
         {
             string number = "";
-            number = GetPrefix(cardType).ToString();
+            number = GetPrefix(type).ToString();
             Random random = new Random();
             while (number.Length < numberofDigits)
             {

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static MyBanker.Cards.Card;
 
 namespace MyBanker.InterFaces
 {
-    interface IOverDraftCard
+    public interface IExpire
     {
-        public void OverDraft();
+        DateTime ExpireDate;
     }
 }

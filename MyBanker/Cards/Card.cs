@@ -4,25 +4,30 @@ using MyBanker.Generators;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyBanker.InterFaces;
 
 namespace MyBanker.Cards
 {
     public abstract class Card
     {
-        public string CustomerName { get; private set; }
-        public string Number { get; private set; }
-        public string AccountNumber { get; set; }
-
-        public Card(string name, string cardType, string accountNumber)
+        public enum Type
         {
-            CustomerName = name;
+            DebitCard,
+            Maestro,
+            VISAElectron,
+            VISADankort,
+            Mastercard
+        }
 
-            if (cardType != "Maestro")
-                Number = NumberGenerator.GenerateCardNumber(cardType, 16);
-
-            else
-                Number = NumberGenerator.GenerateCardNumber(cardType, 19);
-
+        public string CostumerName { get; private set; }
+        public string Number { get; private set; }
+        public string AccountNumber { get; private set; }
+        public Type CardType { get; set; }
+        
+        public Card(string name, Type cardType, string accountNumber)
+        {
+            CostumerName = name;
+            CardType = cardType;
             AccountNumber = accountNumber;
         }
 
@@ -32,7 +37,7 @@ namespace MyBanker.Cards
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Owner = {CustomerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}";
+            return $"Owner = {CostumerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}";
         }
     }
 }

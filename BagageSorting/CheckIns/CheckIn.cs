@@ -40,7 +40,7 @@ namespace BagageSorting.CheckIns
         {
             for (int i = 0; i < reservations.Count; i++)
             {
-                if(reservations[].Departure == )
+
                 Stamp(new Bagage() { Number = reservations[i].PassangerNumber });
                 Console.WriteLine($"Passanger checkin bag at checkin {Number}");
             }

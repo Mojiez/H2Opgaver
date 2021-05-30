@@ -5,6 +5,7 @@ using MyBanker.Generators;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static MyBanker.Cards.Card;
 
 namespace MyBanker
 {
@@ -30,97 +31,20 @@ namespace MyBanker
                 }
             }
         }
-        /// <summary>
-        /// Creates a card with a customer on it
-        /// based on input 
-        /// </summary>
-        /// <param name="cardType"></param>
-        /// <param name="customer"></param>
-        /// <returns></returns>
-        public Card CreateCard(string cardType, Customer customer)
+     
+        public Card GenerateDebitCard(string costumerName, Card.Type type)
         {
-            Card card = null;
-            switch (cardType)
-            {
-                case "Maestro":
-                    return CreateMaestro(customer, customer.Accounts[0]);
-
-                case "MasterCard":
-                    return CreateMasterCard(customer, customer.Accounts[0]);
-
-                case "VISA":
-                    return CreateVISA(customer, customer.Accounts[0]);
-
-                case "DebitCard":
-                    return CreateDebitCard(customer, customer.Accounts[0]);
-
-                case "VISAElectron":
-                    return CreateVISAElectron(customer, customer.Accounts[0]);
-
-                default:
-                    break;
-            }
-            return card;
+            return new Debet(costumerName, type, NumberGenerator.GenerateCardNumber(type, 16));
         }
 
-        /// <summary>
-        /// Creates a Maestro card based on customer name and account number
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        private Maestro CreateMaestro(Customer customer, Account account)
+        public Card GenerateVisaCard(string costumerName, Card.Type type)
         {
-            if (DateTime.Now.Year - customer.BirthDate.Year >= 18)
-                return new Maestro(customer.Name, "Maestro", account.Number);
+            if (type == Card.Type.Maestro)
+                return new Credit(costumerName, type, NumberGenerator.GenerateCardNumber(type, 19), DateTime.Now.AddYears(5).AddMonths(8));
+
             else
-                return null;
+                return new Credit(costumerName, type, NumberGenerator.GenerateCardNumber(type, 16), DateTime.Now.AddYears(5));
         }
-        /// <summary>
-        /// Creates a Debit card based on customer name and account number
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        private DebitCard CreateDebitCard(Customer customer, Account account)
-        {
-            return new DebitCard(customer.Name, "DebitCard", account.Number);
-        }
-        /// <summary>
-        /// Creates a VISA card based on customer name and account number
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        private VISA CreateVISA(Customer customer, Account account)
-        {
-            if (DateTime.Now.Year - customer.BirthDate.Year >= 18)
-                return new VISA(customer.Name, "VISA", account.Number);
-            else return null;
-        }
-        /// <summary>
-        /// Creates a VISAElectron card based on customer name and account number
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        private VISAElectron CreateVISAElectron(Customer customer, Account account)
-        {
-            if (DateTime.Now.Year - customer.BirthDate.Year > 15)
-                return new VISAElectron(customer.Name, "VISAElectron", account.Number);
-            else return null;
-        }
-        /// <summary>
-        /// Creates a MasterCard based on customer name and account number
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        private MasterCard CreateMasterCard(Customer customer, Account account)
-        {
-            if (DateTime.Now.Year - customer.BirthDate.Year > 18)
-                return new MasterCard(customer.Name, "MasterCard", account.Number);
-            else return null;
-        }
+
     }
 }

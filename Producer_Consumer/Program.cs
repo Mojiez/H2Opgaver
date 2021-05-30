@@ -1,126 +1,98 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Producer_Consumer
 {
+    class Producer
+    {
+        public static int ItemsProduced { get; set; }
+        public static bool IsRunning { get; set; }
+        public static object key { get; set; } = new object();
+        public static Stack<Item> Items { get; set; } = new Stack<Item>();
+
+
+        public static void Produce()
+        {
+            if (Monitor.TryEnter(key))
+            {
+                while (Items.Count < 5)
+                {
+
+                    Monitor.Enter(key);
+
+                    Console.WriteLine("Producer work");
+                    Items.Push(new Item());
+                    Monitor.PulseAll(key);
+                    Monitor.Exit(key);
+                    Thread.Sleep(500);
+
+                }
+            }
+            Monitor.Enter(key);
+            Monitor.Wait(key);
+            Produce();
+        }
+    }
+
+    class Consumer
+    {
+        public static object key { get; set; } = new object();
+
+        public static void Consume()
+        {
+            if (Monitor.TryEnter(Producer.key))
+            {
+                if (Producer.Items.Count > 1)
+                {
+                    Monitor.Enter(Producer.key);
+                    if (Producer.Items.Count > 0)
+                    {
+                        Producer.Items.Pop();
+                        Console.WriteLine("Consumer Consumes");
+                        Monitor.PulseAll(Producer.key);
+                    }
+
+                    Monitor.Exit(Producer.key);
+                }
+                else
+                {
+                    Monitor.Enter(Producer.key);
+                    Monitor.Wait(Producer.key);
+                }
+
+            }
+            Thread.Sleep(10);
+            Consume();
+        }
+    }
+
 
     class Item
     {
 
     }
 
-    static class ItemConsumer
-    {
-        public static bool ASleep { get; set; }
-    }
-
-    static class ItemProducer
-    {
-        public static bool ASleep { get; set; }
-    }
-
-
     class Program
     {
-        static Item[] basket = new Item[10];
-        static int itemCount = 0;
+        static Stack<Item> basket = new Stack<Item>();
+        static int itemCount = basket.Count;
         static object controlLock = new object();
-        static object consumer = new object();
-
 
         static void Main(string[] args)
         {
-            int consumerCount = 0;
-            Thread producer = new Thread(Producer);
-            producer.Start();
-            Thread.Sleep(200);
-            while (true)
-            {
-                if (itemCount > 0)
-                {
-                    Thread consumer = new Thread(Consumer);
-                    consumerCount++;
-                    consumer.Start();
-                    Console.WriteLine($"new consumer number {consumerCount} enters");
-                }
-                Thread.Sleep(100);
-            }
-        }
 
-        public static void Consumer()
-        {
 
-            Random random = new Random();
-            int itemnumber = random.Next(10);
-            lock (consumer)
-            {
-                while (basket[itemnumber] == null)
-                {
-                    itemnumber = random.Next(10);
-                }
-                if (itemCount < 2)
-                {
-                    Console.WriteLine("consumer waits for items");
-                    Thread.Sleep(300);
-                }
-                Console.WriteLine($"consumer chose item {itemnumber}");
-                if (ItemProducer.ASleep == true)
-                {
-                    lock (controlLock)
-                    {
-                        basket[itemnumber] = null;
-                        Console.WriteLine("Consumer bought an item");
-                        itemCount--;
-                        Console.WriteLine(itemCount);
-                        if (itemCount == 0)
-                        {
-                            Console.WriteLine("consumer calls the producer");
-                            WakeUp();
-                        }
-                    }
+            Thread thread = new Thread(Producer.Produce);
 
-                }
-            }
+            Thread thread1 = new Thread(Consumer.Consume);
 
-        }
+            thread.Start();
+            thread1.Start();
 
-        private static void Sleep()
-        {
-            ItemProducer.ASleep = true;
-            Console.WriteLine("Producer going home to sleep");
-            while (ItemProducer.ASleep == true)
-            {
-                Thread.Sleep(1);
-            }
-        }
-
-        private static void WakeUp()
-        {
-            ItemProducer.ASleep = false;
-            Console.WriteLine("Producer going to work");
-
-        }
-
-        private static void Producer()
-        {
-            while (true)
-            {
-                lock (controlLock)
-                {
-                    for (int i = 0; i < basket.Length; i++)
-                    {
-                        if (basket[i] == null)
-                        {
-                            basket[i] = new Item();
-                            itemCount++;
-                            Console.WriteLine($"Producer added an item to the basket\nitems in basket: {itemCount}");
-                        }
-
-                    }
-                }
-                Sleep();
-            }
+            Console.Read();
 
         }
     }
 }
+

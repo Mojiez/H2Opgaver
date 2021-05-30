@@ -3,26 +3,22 @@ using System.Text;
 
 namespace SymetriskKryptering
 {
-    class Program
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    namespace Alfinans.Applications
     {
-        static void Main(string[] args)
+        internal class Program
         {
-            string input;
-            Console.WriteLine("1. DES\n2. 3DES\n3. Rijndael");
+            private static void Main()
+            {
+                DataSorter sorter = new DataSorter();
+                User user = sorter.GetService<User>();
 
-            Encryption encryption = new Encryption();
+                user.Name = "Hello";
 
-            
-            encryption.Generate(Console.ReadLine());
-
-            Console.WriteLine("Write a text to encrypt");
-            input = Console.ReadLine();
-            byte[] message = encryption.Encrypt(Encoding.ASCII.GetBytes(input));
-            Console.Clear();
-            Console.WriteLine("Encrypted text: " + Convert.ToBase64String(message));
-
-            byte[] newMessage = encryption.Decrypt(message);
-            Console.WriteLine("Decrypted text: " + Encoding.ASCII.GetString(newMessage));
+                Console.WriteLine(user.Name);
+            }
         }
     }
 }
