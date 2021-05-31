@@ -39,7 +39,6 @@ namespace Threading
                 {
                         if (!TempGenerator.IsOutOfRange)
                         {
-
                             Console.WriteLine(TempGenerator.GeneratedTemp);
                         }
                         else

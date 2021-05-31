@@ -6,8 +6,6 @@ namespace Producer_Consumer
 {
     class Producer
     {
-        public static int ItemsProduced { get; set; }
-        public static bool IsRunning { get; set; }
         public static object key { get; set; } = new object();
         public static Stack<Item> Items { get; set; } = new Stack<Item>();
 
@@ -26,7 +24,6 @@ namespace Producer_Consumer
                     Monitor.PulseAll(key);
                     Monitor.Exit(key);
                     Thread.Sleep(500);
-
                 }
             }
             Monitor.Enter(key);
@@ -37,8 +34,6 @@ namespace Producer_Consumer
 
     class Consumer
     {
-        public static object key { get; set; } = new object();
-
         public static void Consume()
         {
             if (Monitor.TryEnter(Producer.key))
@@ -67,29 +62,30 @@ namespace Producer_Consumer
         }
     }
 
-
+    // Used to define a object
     class Item
     {
 
     }
-
+    
+    // Start point of the program
     class Program
     {
-        static Stack<Item> basket = new Stack<Item>();
-        static int itemCount = basket.Count;
-        static object controlLock = new object();
-
         static void Main(string[] args)
         {
 
-
+            // Initialize the thread for method in Producer
             Thread thread = new Thread(Producer.Produce);
 
+            // Initialize the thread for method in Consumer
             Thread thread1 = new Thread(Consumer.Consume);
 
+            // Starts the first thread
             thread.Start();
+            // Starts the second thread
             thread1.Start();
 
+            // To set a wait on main thread reads a key press
             Console.Read();
 
         }
