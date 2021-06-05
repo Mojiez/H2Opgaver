@@ -4,12 +4,15 @@ using System.Threading;
 
 namespace Producer_Consumer
 {
+    // This class represent a producer
     class Producer
     {
+        // Object used as a key to lock threads
         public static object key { get; set; } = new object();
+        // New 
         public static Stack<Item> Items { get; set; } = new Stack<Item>();
 
-
+        
         public static void Produce()
         {
             if (Monitor.TryEnter(key))

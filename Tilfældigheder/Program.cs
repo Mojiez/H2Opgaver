@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Tilfældigheder
 {
@@ -23,21 +24,22 @@ namespace Tilfældigheder
                 for (int i = 0; i < 1000; i++)
                 {
                     rng.GetBytes(data);
-
-                    int value = BitConverter.ToInt32(data, 0);
+                    //Console.WriteLine(BitConverter.ToInt32(data, 0));
                 }
             }
-            stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds + "  ms");
+
+            Console.WriteLine(stopwatch.ElapsedTicks + "  ms");
 
             Random random = new Random();
+            stopwatch.Reset();
             stopwatch.Start();
+
             for (int i = 0; i < 1000; i++)
             {
                 int randomNumber = random.Next(1000);
             }
-            stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds + "  ms");
+            
+            Console.WriteLine(stopwatch.ElapsedTicks + "  ms");
 
         }
     }

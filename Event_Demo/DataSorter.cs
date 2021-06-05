@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Event_Demo.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SymetriskKryptering
+namespace Event_Demo
 {
     public class DataSorter
     {
@@ -17,7 +18,7 @@ namespace SymetriskKryptering
             switch (typeof(T).ToString().ToLower())
             {
                 case "symetriskkryptering.project":
-                    return (T)(object) new Project();
+                    return (T)(object) new Heart();
 
                 case "symetriskkryptering.user":
                     return (T)(object) new User();

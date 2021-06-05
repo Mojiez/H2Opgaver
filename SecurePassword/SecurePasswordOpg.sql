@@ -1,0 +1,14 @@
+CREATE DATABASE SecurePassword;
+GO
+
+USE SecurePassword;
+GO
+
+CREATE TABLE Users(
+Id int IDENTITY(1, 1) PRIMARY KEY,
+UserName VARCHAR(25),
+Password VARCHAR(MAX),
+Salt VARCHAR(MAX)
+);
+
+GO
