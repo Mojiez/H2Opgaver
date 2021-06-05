@@ -22,7 +22,7 @@ namespace ASymetriskKrypteringModtager.RSA
 
             try
             {
-                rsa = new RSACryptoServiceProvider(cspParameters);
+                rsa = new RSACryptoServiceProvider(1024, cspParameters);
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace ASymetriskKrypteringModtager.RSA
                 cspParams.KeyContainerName = ContainerName;
                 cspParams.Flags = CspProviderFlags.UseMachineKeyStore;
                 cspParams.ProviderName = "Microsoft Strong Cryptographic Provider";
-                rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = true };
+                rsa = new RSACryptoServiceProvider(1024, cspParams) { PersistKeyInCsp = true };
             }
         }
 
@@ -43,36 +43,21 @@ namespace ASymetriskKrypteringModtager.RSA
             rsa.Clear();
         }
 
-        public byte[] EncryptData(byte[] dataToEncrypt)
-        {
-            byte[] cipherbytes;
-
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
-            {
-                cipherbytes = rsa.Encrypt(dataToEncrypt, false);
-            }
-
-            return cipherbytes;
-        }
-
+        /// <summary>
+        /// This method 
+        /// </summary>
+        /// <param name="dataToDecrypt"></param>
+        /// <returns></returns>
         public byte[] DecryptData(byte[] dataToDecrypt)
         {
             byte[] plain;
 
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
+            using (var rsa = new RSACryptoServiceProvider(1024))
             {
                 plain = rsa.Decrypt(dataToDecrypt, false);
             }
 
             return plain;
         }
-
-
-
     }
-
 }

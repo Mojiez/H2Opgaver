@@ -10,66 +10,25 @@ namespace ASymetriskKryptering.RSA
     public class RSAGenerator
     {
         const string ContainerName = "MyContainer";
-        public RSACryptoServiceProvider rsa { get; set; }
-
-        public void AssignNewKey()
-        {
-            CspParameters cspParameters = new CspParameters()
-            {
-                Flags = CspProviderFlags.UseExistingKey,
-                KeyContainerName = ContainerName
-            };
-
-            try
-            {
-                rsa = new RSACryptoServiceProvider(cspParameters);
-            }
-            catch (Exception ex)
-            {
-                CspParameters cspParams = new CspParameters(1);
-
-                cspParams.KeyContainerName = ContainerName;
-                cspParams.Flags = CspProviderFlags.UseMachineKeyStore;
-                cspParams.ProviderName = "Microsoft Strong Cryptographic Provider";
-                rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = true };
-            }
-        }
-
-        public void DeleteKeyInCsp()
-        {
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-            var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = false };
-
-            rsa.Clear();
-        }
-
-        public byte[] EncryptData(byte[] dataToEncrypt)
+    
+        public byte[] EncryptData(byte[] dataToEncrypt, byte[] mod, byte[] expo)
         {
             byte[] cipherbytes;
 
             var cspParams = new CspParameters { KeyContainerName = ContainerName };
+            var rsaParams = new RSAParameters();
+            rsaParams.Modulus = mod;
+            rsaParams.Exponent = expo;
 
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
+            
+
+            using (var rsa = new RSACryptoServiceProvider(4096, cspParams))
             {
-                rsa.ImportParameters(new RSAParameters() { Modulus = , Exponent = "", })
+                rsa.ImportParameters(rsaParams);
                 cipherbytes = rsa.Encrypt(dataToEncrypt, false);
             }
 
             return cipherbytes;
-        }
-
-        public byte[] DecryptData(byte[] dataToDecrypt)
-        {
-            byte[] plain;
-
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
-            {
-                plain = rsa.Decrypt(dataToDecrypt, false);
-            }
-
-            return plain;
         }
 
     }

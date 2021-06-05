@@ -12,19 +12,18 @@ namespace ASymetriskKrypteringModtager
             key.AssignNewKey();
 
             
-            var mod = key.rsa.ExportParameters(false).Modulus;
-            var exponent = key.rsa.ExportParameters(false).Exponent;
+            var rsaParams = key.rsa.ExportParameters(false);
+            
 
-            Console.WriteLine("Modulus: " + Convert.ToBase64String(mod));
-            Console.WriteLine("Exponent: " + Convert.ToBase64String(exponent));
+            
+            Console.WriteLine("Modulus: " + Convert.ToBase64String(rsaParams.Modulus));
+            Console.WriteLine("Exponent: " + Convert.ToBase64String(rsaParams.Exponent));
 
 
             Console.WriteLine("Write a text you want to decrypt");
             string text = Console.ReadLine();
-            var encryptedText = key.EncryptData(Encoding.UTF8.GetBytes(text));
-            var decryptedText = key.DecryptData(encryptedText);
-
-            Console.WriteLine(Convert.ToBase64String(encryptedText));
+            
+            var decryptedText = key.DecryptData(Encoding.UTF8.GetBytes(text));
             Console.WriteLine(Convert.ToBase64String(decryptedText));
 
             key.DeleteKeyInCsp();
