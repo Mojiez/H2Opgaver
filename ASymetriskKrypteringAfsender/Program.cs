@@ -28,7 +28,6 @@ namespace ASymetriskKryptering
             var expo = Encoding.UTF8.GetBytes(exponent);
             var encryptedText = generator.EncryptData(Encoding.UTF8.GetBytes(mess), mod, expo);
             
-            
             Console.WriteLine(Convert.ToBase64String(encryptedText));
             Console.ReadKey();
             Console.Clear();

@@ -15,14 +15,11 @@ namespace ASymetriskKryptering.RSA
         {
             byte[] cipherbytes;
 
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
             var rsaParams = new RSAParameters();
             rsaParams.Modulus = mod;
             rsaParams.Exponent = expo;
 
-            
-
-            using (var rsa = new RSACryptoServiceProvider(4096, cspParams))
+            using (var rsa = new RSACryptoServiceProvider(2048))
             {
                 rsa.ImportParameters(rsaParams);
                 cipherbytes = rsa.Encrypt(dataToEncrypt, false);

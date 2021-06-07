@@ -12,7 +12,7 @@ namespace ASymetriskKrypteringModtager
             key.AssignNewKey();
 
             
-            var rsaParams = key.rsa.ExportParameters(false);
+            var rsaParams = key._rsa.ExportParameters(false);
             
 
             

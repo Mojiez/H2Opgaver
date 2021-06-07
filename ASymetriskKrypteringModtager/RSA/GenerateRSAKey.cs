@@ -10,7 +10,7 @@ namespace ASymetriskKrypteringModtager.RSA
     public class GenerateRSAKey
     {
         const string ContainerName = "MyContainer";
-        public RSACryptoServiceProvider rsa { get; set; }
+        public RSACryptoServiceProvider _rsa { get; set; }
 
         public void AssignNewKey()
         {
@@ -22,17 +22,17 @@ namespace ASymetriskKrypteringModtager.RSA
 
             try
             {
-                rsa = new RSACryptoServiceProvider(1024, cspParameters);
+               _rsa = new RSACryptoServiceProvider(2048, cspParameters);
             }
             catch (Exception ex)
             {
+            }
                 CspParameters cspParams = new CspParameters(1);
 
                 cspParams.KeyContainerName = ContainerName;
                 cspParams.Flags = CspProviderFlags.UseMachineKeyStore;
                 cspParams.ProviderName = "Microsoft Strong Cryptographic Provider";
-                rsa = new RSACryptoServiceProvider(1024, cspParams) { PersistKeyInCsp = true };
-            }
+                _rsa = new RSACryptoServiceProvider(2048, cspParams) { PersistKeyInCsp = true };
         }
 
         public void DeleteKeyInCsp()
@@ -43,20 +43,16 @@ namespace ASymetriskKrypteringModtager.RSA
             rsa.Clear();
         }
 
-        /// <summary>
-        /// This method 
-        /// </summary>
-        /// <param name="dataToDecrypt"></param>
-        /// <returns></returns>
         public byte[] DecryptData(byte[] dataToDecrypt)
         {
             byte[] plain;
 
-            using (var rsa = new RSACryptoServiceProvider(1024))
+            //Ved ikke hvorfor den bliver ved med at smide en fejl på at min key er en ugldig længde
+            using (var rsa = new RSACryptoServiceProvider(2048))
             {
+                rsa.ImportParameters(this._rsa.ExportParameters(true));
                 plain = rsa.Decrypt(dataToDecrypt, false);
             }
-
             return plain;
         }
     }
