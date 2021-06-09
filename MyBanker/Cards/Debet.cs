@@ -6,17 +6,8 @@ namespace MyBanker.Cards
 {
     class Debet : Card
     {
-        public Debet(string name, Type type, string accountNumber) : base(name, type, accountNumber)
+        public Debet(string name, Type type, string accountNumber, string number) : base(name, type, accountNumber, number)
         {
-        }
-
-        /// <summary>
-        /// Makes sure that all information is displayed on the ToString method
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return $"Owner {CostumerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}";
         }
     }
 }

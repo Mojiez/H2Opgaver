@@ -1,26 +1,30 @@
-﻿using MyBanker.Accounts;
-using MyBanker.InterFaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace MyBanker.Cards
 {
     public class Credit : Card
     {
-        public DateTime ExpireDate;
-        public Credit(string name, Type type, string accountNumber, DateTime expireDate) : base(name, type, accountNumber)
+        // Property to hold the expire date on the card
+        public DateTime ExpireDate { get; set; }
+        
+        /// <summary>
+        /// This is the construktor for this class
+        /// This class only has one property
+        /// Inherites all other properties from its super class Card
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="accountNumber"></param>
+        /// <param name="expireDate"></param>
+        /// <param name="number"></param>
+        public Credit(string name, Type type, string accountNumber, DateTime expireDate, string number) : base(name, type, accountNumber, number)
         {
             ExpireDate = expireDate;
         }
 
-        /// <summary>
-        /// Makes sure that all information is displayed on the ToString method
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
-            return $"Owner {CostumerName}\nCard Nr. {Number}\nAccount Nr. {AccountNumber}\nExpireDate {ExpireDate}";
+            return base.ToString() + $"\nEpire Date: {ExpireDate.ToString("mm/dd/yyyy")}";
         }
     }
 }

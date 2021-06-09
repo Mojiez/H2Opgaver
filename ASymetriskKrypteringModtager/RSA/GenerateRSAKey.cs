@@ -10,14 +10,14 @@ namespace ASymetriskKrypteringModtager.RSA
     public class GenerateRSAKey
     {
         const string ContainerName = "MyContainer";
-        public RSACryptoServiceProvider _rsa { get; set; }
+        public static RSACryptoServiceProvider _rsa { get; set; }
 
         public void AssignNewKey()
         {
             CspParameters cspParameters = new CspParameters()
             {
-                Flags = CspProviderFlags.UseExistingKey,
-                KeyContainerName = ContainerName
+                KeyContainerName = ContainerName,
+                Flags = CspProviderFlags.UseExistingKey
             };
 
             try
@@ -39,7 +39,7 @@ namespace ASymetriskKrypteringModtager.RSA
         {
             var cspParams = new CspParameters { KeyContainerName = ContainerName };
             var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = false };
-
+            
             rsa.Clear();
         }
 
@@ -48,11 +48,13 @@ namespace ASymetriskKrypteringModtager.RSA
             byte[] plain;
 
             //Ved ikke hvorfor den bliver ved med at smide en fejl på at min key er en ugldig længde
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.ImportParameters(this._rsa.ExportParameters(true));
-                plain = rsa.Decrypt(dataToDecrypt, false);
-            }
+            //using (var rsa = new RSACryptoServiceProvider(2048))
+            //{
+                
+                
+            //}
+            
+            plain = _rsa.Decrypt(dataToDecrypt, true);
             return plain;
         }
     }

@@ -10,15 +10,13 @@ namespace ASymetriskKrypteringModtager
         {
             GenerateRSAKey key = new GenerateRSAKey();
             key.AssignNewKey();
+            key.DeleteKeyInCsp();
 
-            
-            var rsaParams = key._rsa.ExportParameters(false);
-            
-
+            key.AssignNewKey();
+            var rsaParams = GenerateRSAKey._rsa.ExportParameters(false);
             
             Console.WriteLine("Modulus: " + Convert.ToBase64String(rsaParams.Modulus));
             Console.WriteLine("Exponent: " + Convert.ToBase64String(rsaParams.Exponent));
-
 
             Console.WriteLine("Write a text you want to decrypt");
             string text = Console.ReadLine();
@@ -26,7 +24,6 @@ namespace ASymetriskKrypteringModtager
             var decryptedText = key.DecryptData(Encoding.UTF8.GetBytes(text));
             Console.WriteLine(Convert.ToBase64String(decryptedText));
 
-            key.DeleteKeyInCsp();
         }
     }
 }

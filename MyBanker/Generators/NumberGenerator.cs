@@ -8,8 +8,11 @@ namespace MyBanker.Generators
 {
     public static class NumberGenerator
     {
+        //A int array to contain the prefixes for visa
         private static int[] visaElectron = new int[] { 4026, 417500, 4508, 4844, 4913, 4917 };
+        //A int array to contain the prefixes for mastercard
         private static int[] masterCard = new int[] { 51, 52, 53, 54, 55 };
+        //A int array to contain the prefixes for maestro
         private static int[] maestro = new int[] { 5018, 5020, 5038, 5893, 6304, 6759, 6762, 6763 };
 
         /// <summary>
@@ -38,7 +41,9 @@ namespace MyBanker.Generators
         }
 
         /// <summary>
-        /// Adds the assigned prefix and the randomly generates the numbers
+        /// Sets the prefix on the card
+        /// And it generates a random card number 
+        /// returns a string with numbers
         /// </summary>
         /// <param name="cardType"></param>
         /// <param name="numberofDigits"></param>
@@ -46,13 +51,13 @@ namespace MyBanker.Generators
         public static string GenerateCardNumber(Card.Type type, int numberofDigits)
         {
             string number = "";
+            //Gets the prefix number for the selected card
             number = GetPrefix(type).ToString();
             Random random = new Random();
             while (number.Length < numberofDigits)
             {
                 number += random.Next(10);
             }
-
             return number;
         }
 
