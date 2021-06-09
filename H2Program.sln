@@ -55,9 +55,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hash_Test", "Hash_Test\Hash
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurePassword", "SecurePassword\SecurePassword.csproj", "{F90D532F-E3B7-4BB3-9084-06C132F688D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASymetriskKrypteringModtager", "ASymetriskKrypteringModtager\ASymetriskKrypteringModtager.csproj", "{CDD1AAC4-4A49-432D-9696-3F3734B31AD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASymetriskKrypteringModtager", "ASymetriskKrypteringModtager\ASymetriskKrypteringModtager.csproj", "{CDD1AAC4-4A49-432D-9696-3F3734B31AD0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASymetriskKrypteringAfsender", "ASymetriskKrypteringAfsender\ASymetriskKrypteringAfsender.csproj", "{62C40815-7C1A-4CF6-9006-5A2DE6728D3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMachine\CoffeeMachine.csproj", "{C3F85D80-474C-4D08-8895-4C935F1E29B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +179,10 @@ Global
 		{62C40815-7C1A-4CF6-9006-5A2DE6728D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C40815-7C1A-4CF6-9006-5A2DE6728D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C40815-7C1A-4CF6-9006-5A2DE6728D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,7 +27,7 @@
         {
             if (isHTML)
             {
-                mess.Body = Converter.ConvertBodyToHTML(m.Body);
+                mess.Body = Converter.ConvertBodyToHTML(mess.Body);
                 //her implementeres alt koden til at sende via Smtp
             }
         }
