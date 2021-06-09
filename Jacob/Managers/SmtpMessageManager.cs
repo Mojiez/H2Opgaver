@@ -17,6 +17,12 @@
             }
         }
 
+        /// <summary>
+        /// This method is used to seng a message to more than one person
+        /// </summary>
+        /// <param name="receiver"></param>
+        /// <param name="mess"></param>
+        /// <param name="isHTML"></param>
         public virtual void sendMessageToAll(string[] receiver, Message mess, bool isHTML)
         {
             if (isHTML)

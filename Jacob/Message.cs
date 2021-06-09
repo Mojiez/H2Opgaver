@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Jacob
 {
+    // This class represents a message
     public class Message
     {
+        //Make private fields for properties
         private string to, from, body, subject, cc;
 
         public string To { get => to; set => to = value; }
@@ -14,6 +16,7 @@ namespace Jacob
         public string Subject { get => subject; set => subject = value; }
         public string Cc { get => cc; set => cc = value; }
 
+        //Construktor for the message class
         public Message(string to, string from, string body, string subject, string cc)
         {
             this.to = to;
