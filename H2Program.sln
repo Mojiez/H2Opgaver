@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASymetriskKrypteringAfsende
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMachine\CoffeeMachine.csproj", "{C3F85D80-474C-4D08-8895-4C935F1E29B3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeMachine_Del2", "CoffeeMachine Del 2\CoffeeMachine_Del2.csproj", "{8F5F521E-2FD5-4AD7-88B3-E45DCAC2D417}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,10 @@ Global
 		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F85D80-474C-4D08-8895-4C935F1E29B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F5F521E-2FD5-4AD7-88B3-E45DCAC2D417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F5F521E-2FD5-4AD7-88B3-E45DCAC2D417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F5F521E-2FD5-4AD7-88B3-E45DCAC2D417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F5F521E-2FD5-4AD7-88B3-E45DCAC2D417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
