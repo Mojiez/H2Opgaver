@@ -21,6 +21,8 @@ namespace CoffeeMachine_App
 
             string input = Console.ReadLine();
 
+            Console.WriteLine("How many cups ?");
+            string numberOfCups = Console.ReadLine();
             switch (input)
             {
                 case "1":
@@ -30,30 +32,30 @@ namespace CoffeeMachine_App
                     ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.None;
                     // First the coffeeMachine IngredientContainer object gets casted into a WaterContainer
                     // Then the ingredient from the container is set
-                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = 100;
+                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
                     Console.WriteLine("Here is your hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
 
                 case "2":
                     ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.None;
-                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = 100;
+                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
-                    Console.WriteLine("Here is your hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
+                    Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
 
                 case "3":
                     ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.CoffeePowder;
-                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = 100;
+                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
-                    Console.WriteLine("Here is your hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
+                    Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
 
                 case "4":
                     ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.Tea;
-                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = 100;
+                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
-                    Console.WriteLine("Here is your hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
+                    Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
                 default:
                     break;
