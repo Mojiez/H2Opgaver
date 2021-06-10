@@ -40,15 +40,20 @@ namespace CoffeeMachine_App.Machines
                 case HotDrinks.Water:
                     ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.None;
                     break;
-
+                
                 case HotDrinks.Coffee:
                     ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.CoffeePowder;
                     break;
-
+                
                 case HotDrinks.Tea:
                     ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.Tea;
                     break;
-
+                
+                case HotDrinks.Espresso:
+                    ((WaterContainer)WaterContainer).CupValue /= 2;
+                    ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.CoffeePowder;
+                    break;
+                
                 default:
                     break;
             }

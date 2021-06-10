@@ -51,6 +51,13 @@ namespace CoffeeMachine_App
                     Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
 
+                case "4":
+                    ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink = HotDrinks.Espresso;
+                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
+                    coffeeMachine.TurnOn();
+                    Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
+                    break;
+                
                 default:
                     break;
             }

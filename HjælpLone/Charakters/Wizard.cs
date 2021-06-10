@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HjælpLone.Charakters
 {
-    public class Wizard : IHeal, IDie, IFight, ITeleport, IThrowFrostNova,
+    public class Wizard : IHeal, IDie, IFight, ITeleport, IThrowFrostNova
  {
         public void Die()
         {

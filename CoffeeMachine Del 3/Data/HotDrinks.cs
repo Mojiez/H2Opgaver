@@ -10,6 +10,8 @@ namespace CoffeeMachine_App.Data
     public enum HotDrinks
     {
         Water,
-        Coffee
+        Coffee,
+        Tea,
+        Espresso
     }
 }

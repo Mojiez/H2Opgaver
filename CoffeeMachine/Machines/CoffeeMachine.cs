@@ -29,22 +29,22 @@ namespace CoffeeMachine_App.Machines
 
         /// <summary>
         /// Useses the water from the water container
-        /// warms is up then pour it over the ingredient container to make the hot drink 
+        /// warms is up then pour it over the ingredient container to make the hot drink :)
         /// </summary>
         /// <returns></returns>
         public void Brew()
         {
-            switch (((IngredientContainer)IngredientContainer).Ingredient)
+            // Here the ingredient is set based on the hot drink selected from the CoffeeContainer
+            switch (((CoffeeContainer)CoffeeContainer).HotDrink)
             {
-                case Ingredients.None:
-                    ((CoffeeContainer)CoffeeContainer).HotDrink = HotDrinks.HotWater;
+                case HotDrinks.Water:
+                    ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.None;
                     break;
-                case Ingredients.CoffeePowder:
-                    ((CoffeeContainer)CoffeeContainer).HotDrink = HotDrinks.Coffee;
+
+                case HotDrinks.Coffee:
+                    ((IngredientContainer)IngredientContainer).Ingredient = Ingredients.CoffeePowder;
                     break;
-                case Ingredients.Water:
-                    ((CoffeeContainer)CoffeeContainer).HotDrink = HotDrinks.HotWater;
-                    break;
+
                 default:
                     break;
             }

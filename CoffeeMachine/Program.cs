@@ -11,12 +11,12 @@ namespace CoffeeMachine_App
         static void Main(string[] args)
         {
             CoffeeMachine coffeeMachine = new CoffeeMachine("", "");
-            Console.WriteLine("Select a type of ingredient");
+            Console.WriteLine("Select a type of hot drink");
             // The GetNames method turns the enum into a string array
-            for (int i = 1; i < Enum.GetNames(typeof(Ingredients)).Length + 1; i++)
+            for (int i = 1; i < Enum.GetNames(typeof(HotDrinks)).Length + 1; i++)
             {
                 // Gives a menu for all the available ingredients with numbercount
-                Console.WriteLine($"{i}.{(Ingredients)i - 1 }");
+                Console.WriteLine($"{i}.{(HotDrinks)i - 1 }");
             }
 
             string input = Console.ReadLine();
@@ -27,25 +27,18 @@ namespace CoffeeMachine_App
             {
                 case "1":
                     // First the coffeeMachine object is called
-                    // To get the IngredientContainer object then it gets casted into a IngredientContainer
-                    // Then the ingredient from the container is set
-                    ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.None;
-                    // First the coffeeMachine IngredientContainer object gets casted into a WaterContainer
-                    // Then the ingredient from the container is set
+                    // To get the Container object from the coffeeMachine object, then it gets casted into a CoffeeContainer
+                    // Then the HotDrink from the container is set
+                    ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink = HotDrinks.Water;
+                   
+                    // First the coffeeMachines Container object gets casted into a WaterContainer
                     ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
                     Console.WriteLine("Here is your hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
                     break;
 
                 case "2":
-                    ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.None;
-                    ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
-                    coffeeMachine.TurnOn();
-                    Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
-                    break;
-
-                case "3":
-                    ((IngredientContainer)coffeeMachine.IngredientContainer).Ingredient = Ingredients.CoffeePowder;
+                    ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink = HotDrinks.Coffee;
                     ((WaterContainer)coffeeMachine.WaterContainer).CupValue = Convert.ToInt32(numberOfCups);
                     coffeeMachine.TurnOn();
                     Console.WriteLine($"Here is your {numberOfCups} cups of hot " + ((CoffeeContainer)coffeeMachine.CoffeeContainer).HotDrink);
