@@ -6,7 +6,8 @@ namespace BirdsFlyingAround_App.Date_Classes
 {
     public abstract class Bird
     {
-        public abstract void SetLocation(double longitude, double latitude);
-        public abstract void Draw();
+        public abstract void Shit();
+        public abstract void Eat();
+        public abstract void Sing();
     }
 }

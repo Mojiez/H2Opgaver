@@ -7,6 +7,6 @@ namespace BirdsFlyingAround_App.Interfaces
 {
     interface IFly 
     {
-        public void SetAltitude(double longitude, double latitude); 
+        public void Fly(); 
     }
 }

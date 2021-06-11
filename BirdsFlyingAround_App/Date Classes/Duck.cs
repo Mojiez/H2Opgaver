@@ -5,14 +5,18 @@ using System.Text;
 
 namespace BirdsFlyingAround_App.Date_Classes
 {
-    // This class represents a pinguin 
+    // This class represents a duck 
     // A duck is a bird therefore it inherites from bird
     // Not all birds can fly that why we have the interface IFly
-    // A pinguin cant fly, so pinguin cant implement IFly because it breaks l from solid
-    // The object needs to act like what defines it
-    public class Pinguin : Bird
+    // A duck can fly therefore it has to implement IFly to get the fly method 
+    public class Duck : Bird, IFly
     {
         public override void Eat()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Fly()
         {
             throw new NotImplementedException();
         }
