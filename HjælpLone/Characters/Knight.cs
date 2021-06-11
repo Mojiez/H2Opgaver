@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HjælpLone.Charakters
+namespace HjælpLone.Characters
 {
-    class Knight : IBash, ICleave, IDie, IFight, IHeal, IRaiseShield, IShieldGlare, ISlash
+    // This class represents a Knight
+    // It implements ICharacter to get the base implementation of a character
+    // All other abilities is separated so its open for extention and closed for modification
+    class Knight : ICharacter, IBash, ICleave, IRaiseShield, IShieldGlare, ISlash
     {
         public void Bash()
         {

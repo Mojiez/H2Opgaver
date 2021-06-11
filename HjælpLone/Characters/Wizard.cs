@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HjælpLone.Charakters
+namespace HjælpLone.Characters
 {
-    public class Wizard : IHeal, IDie, IFight, ITeleport, IThrowFrostNova
- {
+    // This class represents a Wizard
+    // It implements ICharacter to get the base implementation of a character
+    // All other abilities is separated so its open for extention and closed for modification
+    public class Wizard : ICharacter, ITeleport, IThrowFrostNova
+    {
         public void Die()
         {
             Console.WriteLine("I'm dying");

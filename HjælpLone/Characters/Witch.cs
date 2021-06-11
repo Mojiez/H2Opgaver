@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HjælpLone.Charakters
+namespace HjælpLone.Characters
 {
-    class Witch : IDie, IFight, IHeal, IRaiseShield, IShieldGlare, ITeleport
+    // This class represents a Witch
+    // It implements ICharacter to get the base implementation of a character
+    // All other abilities is separated so its open for extention and closed for modification
+    class Witch : ICharacter, IRaiseShield, IShieldGlare, ITeleport
     {
         public void Die()
         {

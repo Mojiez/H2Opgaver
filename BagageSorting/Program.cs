@@ -3,6 +3,7 @@ using BagageSorting.Reservations;
 using BagageSorting.Sorting;
 using BagageSorting.Terminals;
 using System.Threading;
+using System.Windows;
 
 namespace BagageSorting
 {
@@ -23,7 +24,6 @@ namespace BagageSorting
                     resevationManager.Open(o, gates, checkIns);
                 });
             }
-
         }
     }
 }

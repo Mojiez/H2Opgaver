@@ -4,8 +4,11 @@ using System.Text;
 
 namespace HjælpLone.Interface
 {
-    interface IDie
+    // This interface represents a base character
+    public interface ICharacter
     {
         void Die();
+        void Fight();
+        void Heal();
     }
 }

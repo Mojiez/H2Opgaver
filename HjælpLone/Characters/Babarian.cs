@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HjælpLone.Charakters
+namespace HjælpLone.Characters
 {
-    public class Babarian : IBash, ICleave, IDie, IFight, IHeal, ISlash
+    // This class represents a Babarian
+    // It implements ICharacter to get the base implementation of a character
+    // All other abilities is separated so its open for extention and closed for modification
+    public class Babarian : ICharacter, IBash, ICleave, ISlash
     {
         public void Bash()
         {
