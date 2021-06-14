@@ -12,7 +12,6 @@ namespace BagageSorting.CheckIns
        
         public Bagage()
         {
-
         }
     }
 }

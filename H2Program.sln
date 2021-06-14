@@ -67,6 +67,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeMachine_Del3", "Coffe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BagageSorting_App", "BagageSorting_App\BagageSorting_App.csproj", "{928BE77A-FC9B-4283-AA7D-61D4AAEC5237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependency", "Dependency\Dependency.csproj", "{89339CC1-CD7D-40F5-9F22-16EBC0869881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottleSortWpf", "BottleSortWpf\BottleSortWpf.csproj", "{733BAC0B-0681-40DF-BE02-678363625DA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -201,6 +205,14 @@ Global
 		{928BE77A-FC9B-4283-AA7D-61D4AAEC5237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{928BE77A-FC9B-4283-AA7D-61D4AAEC5237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{928BE77A-FC9B-4283-AA7D-61D4AAEC5237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89339CC1-CD7D-40F5-9F22-16EBC0869881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89339CC1-CD7D-40F5-9F22-16EBC0869881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89339CC1-CD7D-40F5-9F22-16EBC0869881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89339CC1-CD7D-40F5-9F22-16EBC0869881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733BAC0B-0681-40DF-BE02-678363625DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733BAC0B-0681-40DF-BE02-678363625DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733BAC0B-0681-40DF-BE02-678363625DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733BAC0B-0681-40DF-BE02-678363625DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
