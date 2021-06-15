@@ -14,7 +14,7 @@ namespace BottleSortWpf.Producers
         private int sodaProducedCount = 0;
         // A stack that represent a buffer
         public static Stack<Bottle> Bottles { get; set; }
-        public bool Running { get; set; }
+        public static bool Running { get; set; }
         // A object that works as a thread state (key object)
         public static object ProduceKey { get; set; }
 
@@ -34,7 +34,7 @@ namespace BottleSortWpf.Producers
             // A while to secure that the method only runs under these conditions  
             // BufferControle has to return false 
             // And bottles count has to be below 10
-            while (Bottles.Count < 10)
+            while (Running && Bottles.Count < 10)
             {
                 // Tests if the thread can get the key object
                 if (Monitor.TryEnter(ProduceKey))

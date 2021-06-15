@@ -1,8 +1,7 @@
-﻿using BottleSortWpf.Consumer;
-using BottleSortWpf.ImagesControle;
+﻿using BottleSortWpf.Animation;
+using BottleSortWpf.Consumer;
 using BottleSortWpf.Producers;
 using System;
-using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,8 +15,7 @@ namespace BottleSortWpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        ImagesManager imagesManager = new ImagesManager();
-
+        Animator animator = new Animator();
         BottleProducer producer = new BottleProducer();
         BottleConsumer consumer = new BottleConsumer();
         BottleSplitter splitter = new BottleSplitter();
@@ -27,83 +25,181 @@ namespace BottleSortWpf
             InitializeComponent();
         }
 
+        /// <summary>
+        /// This method runs with 3 other methods to create a method chain or a loop
+        /// Updates the ui
+        /// </summary>
         private void Update()
         {
+            Thread.Sleep(1000);
             UpdateProducer();
         }
 
+        /// <summary>
+        /// This method runs with 3 other methods to create a method chain or a loop
+        /// Updates the ui
+        /// </summary>
         private void UpdateProducer()
         {
-            Thread.Sleep(100);
-            Dispatcher.Invoke(() =>
+            while (BottleProducer.Running)
             {
-                Duration duration = new Duration(TimeSpan.FromMilliseconds(1));
-                DoubleAnimation animation = new DoubleAnimation(BottleProducer.Bottles.Count * 10, duration);
-                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animation);
-                this.producerText.Text = Convert.ToString(BottleProducer.Bottles.Count);
-            });
-            UpdateSplitter();
+                // Calls the ui thread or main thread
+                this.Dispatcher.Invoke(() =>
+                {
+                    // Sets the ProgressBar Value to trigger a On changed event 
+                    this.producerBar.Value = BottleProducer.Bottles.Count * 10;
+                });
+
+                Thread.Sleep(100);
+                UpdateSplitter();
+            }
         }
 
+        /// <summary>
+        /// This method runs with 3 other methods to create a method chain or a loop
+        /// Updates the ui
+        /// </summary>
         private void UpdateSplitter()
         {
-            Thread.Sleep(100);
-            Dispatcher.Invoke(() =>
+            while (BottleSplitter.Running)
             {
-                Duration duration = new Duration(TimeSpan.FromMilliseconds(1));
-                DoubleAnimation animation = new DoubleAnimation(BottleSplitter.BeerBottles.Count * 10, duration);
-                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animation);
-                this.splitterBeer.Text = Convert.ToString(BottleSplitter.BeerBottles.Count);
+                // Calls the ui thread or main thread
+                this.Dispatcher.Invoke(() =>
+                {
+                    // Sets the ProgressBar Value to trigger a On changed event
+                    this.splitterBarBeer.Value = BottleSplitter.BeerBottles.Count * 10;
+                    this.splitterBarSoda.Value = BottleSplitter.SodaBottles.Count * 10;
+                });
 
-                Duration duration1 = new Duration(TimeSpan.FromMilliseconds(1));
-                DoubleAnimation animation1 = new DoubleAnimation(BottleSplitter.SodaBottles.Count * 10, duration1);
-                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animation1);
-                this.splitterSoda.Text = Convert.ToString(BottleSplitter.SodaBottles.Count);
-            });
-            UpdateConsumer();
+                Thread.Sleep(100);
+                UpdateConsumer();
+            }
         }
 
+        /// <summary>
+        /// This method runs with 3 other methods to create a method chain or a loop
+        /// Updates the ui
+        /// </summary>
         private void UpdateConsumer()
         {
-            Thread.Sleep(100);
-            Dispatcher.Invoke(() =>
+            while (BottleConsumer.Running)
             {
-                Duration duration = new Duration(TimeSpan.FromMilliseconds(1));
-                DoubleAnimation animation = new DoubleAnimation(BottleConsumer.ConsumedBottles.Count, duration);
-                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animation);
-                this.consumedBottles.Text = Convert.ToString(BottleConsumer.ConsumedBottles.Count);
-            });
-            Update();
+                Dispatcher.Invoke(() =>
+                {
+                    this.consumerBar.Value = BottleConsumer.ConsumedBottles.Count;
+                });
+                Update();
+            }
         }
 
+        /// <summary>
+        /// This method triggers from the front end On Button press
+        /// Starts the logic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
             {
                 new Thread(() =>
                 {
+                    BottleProducer.Running = true;
                     producer.FillBuffer();
-                    producer.Running = true;
                 }).Start();
 
                 new Thread(() =>
                 {
+                    BottleSplitter.Running = true;
                     splitter.SortBottles();
-                    splitter.Running = true;
                 }).Start();
 
-                new Thread(() => 
+                new Thread(() =>
                 {
+                    BottleConsumer.Running = true;
                     consumer.Consume();
                 }).Start();
             });
-            
+
             this.Dispatcher.Invoke(() =>
             {
                 new Thread(() =>
                 {
                     Update();
                 }).Start();
+            });
+        }
+
+        /// <summary>
+        /// This method triggers from the front end On Button press
+        /// Stops the logic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            BottleProducer.Running = false;
+            BottleSplitter.Running = false;
+            BottleConsumer.Running = false;
+        }
+
+        /// <summary>
+        /// This method runs on a valueChanged event
+        /// Runs if the producerBar value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void producerBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+                this.producerText.Text = Convert.ToString(BottleProducer.Bottles.Count);
+            });
+        }
+
+        /// <summary>
+        /// This method runs on a valueChanged event
+        /// Runs if the splitterBarBeer value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void splitterBarBeer_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                this.splitterBarBeer.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+                this.splitterBeer.Text = Convert.ToString(BottleSplitter.BeerBottles.Count);
+            });
+        }
+
+        /// <summary>
+        /// This method runs on a valueChanged event
+        /// Runs if the splitterBarSoda value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void splitterBarSoda_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                this.splitterBarSoda.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+                this.splitterSoda.Text = Convert.ToString(BottleSplitter.SodaBottles.Count);
+            });
+        }
+
+        /// <summary>
+        /// This method runs on a valueChanged event
+        /// Runs if the consumerBar value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void consumerBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                this.consumerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+                this.consumedBottles.Text = Convert.ToString(BottleConsumer.ConsumedBottles.Count);
             });
         }
     }
