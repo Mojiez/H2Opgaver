@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BottleSortWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="500" Width="800" MinHeight="500" MinWidth="800" ResizeMode="NoResize">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -30,26 +30,20 @@
 
         <Grid x:Name="animationGrid" Grid.Row="1" Grid.RowSpan="2">
             <Canvas x:Name="Screen">
-                <ProgressBar  x:Name="producerBar" Orientation="Vertical"  Minimum="0" Maximum="100" Height="100" Value="0" Width="30" Background="LawnGreen" Canvas.Left="56" Canvas.Top="107"/>
-                <TextBlock x:Name="producerText" Text="Antal" Canvas.Left="57" Canvas.Top="153"></TextBlock>
-                <TextBlock Canvas.Left="80" Canvas.Top="263" Text=""  TextWrapping="Wrap" RenderTransformOrigin="0.133,-1.123"/>
+                <ProgressBar  x:Name="producerBar" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100"  Value="0"  Background="LawnGreen" Canvas.Left="56" Canvas.Top="107"/>
+                <TextBlock x:Name="producerText" FontWeight="Bold" Text="Antal" Canvas.Left="57" Canvas.Top="91"></TextBlock>
+                <TextBlock Canvas.Left="30" Canvas.Top="212" Text="Bottle Producer"  TextWrapping="Wrap" RenderTransformOrigin="0.498,0.632"/>
 
-                <TextBlock Panel.ZIndex="1" x:Name="splitterSoda" Text="Antal" Canvas.Left="157" Canvas.Top="153"></TextBlock>
-                <ProgressBar x:Name="splitterBarSoda" Orientation="Vertical" Height="100" Width="30" Canvas.Left="126" Canvas.Top="107"  Background="Brown" />
-                <TextBlock  x:Name="splitterBeer" Text="Antal" Canvas.Left="127" Canvas.Top="153"></TextBlock>
-                <ProgressBar x:Name="splitterBarBeer" Orientation="Vertical" Height="100" Width="30" Canvas.Left="156" Canvas.Top="107"  Background="YellowGreen" />
-                
-                
-                <TextBlock Canvas.Left="609" Canvas.Top="263" Text="Bottle Consumer" TextWrapping="Wrap" RenderTransformOrigin="0.133,-1.123"/>
+                <ProgressBar x:Name="splitterBarBeer" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="100" Value="0" Canvas.Left="423" Canvas.Top="107"  Background="YellowGreen" />
+                <TextBlock Panel.ZIndex="1" x:Name="splitterSoda" FontWeight="Bold" Text="Antal" Canvas.Left="424" Canvas.Top="91"></TextBlock>
 
+                <ProgressBar x:Name="splitterBarSoda" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100" Value="0" Canvas.Left="320" Canvas.Top="107"  Background="Brown" />
+                <TextBlock  x:Name="splitterBeer" Text="Antal" FontWeight="Bold" Canvas.Left="321" Canvas.Top="91" RenderTransformOrigin="-0.427,0.708"></TextBlock>
+                <TextBlock Canvas.Left="351" Canvas.Top="207" Text="Bottle Splitter" TextWrapping="Wrap" RenderTransformOrigin="0.531,0.545"/>
 
-
-                <ProgressBar x:Name="consumerBar" Height="100" Width="30" Canvas.Left="318" Canvas.Top="107" Background="DarkCyan"/>
-                <TextBlock Canvas.Left="364" Canvas.Top="263" Text="Bottle Splitter" TextWrapping="Wrap" RenderTransformOrigin="0.133,-1.123"/>
-
-                <Image x:Name="producerPic" Height="100" Canvas.Left="41" Canvas.Top="4" Width="100"/>
-                <Image x:Name="splitterPic" Height="100" Canvas.Left="350" Canvas.Top="107" Width="100"/>
-                <Image x:Name="consumerPic" Height="100" Canvas.Left="603" Canvas.Top="107" Width="100"/>
+                <ProgressBar x:Name="consumerBar" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100"  Value="0"  Canvas.Left="712" Canvas.Top="107" Background="DarkCyan"/>
+                <TextBlock  x:Name="consumedBottles" Panel.ZIndex="1" FontWeight="Bold" Text="Antal" Canvas.Left="712" Canvas.Top="91"></TextBlock>
+                <TextBlock Canvas.Left="683" Canvas.Top="212" Text="Bottle Consumer" TextWrapping="Wrap" RenderTransformOrigin="0.525,0.482"/>
 
             </Canvas>
         </Grid>

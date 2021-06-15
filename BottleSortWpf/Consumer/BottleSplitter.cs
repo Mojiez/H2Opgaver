@@ -11,8 +11,8 @@ namespace BottleSortWpf.Consumer
     {
         public static Stack<Bottle> BeerBottles { get; set; }
         public static Stack<Bottle> SodaBottles { get; set; }
+        public bool Running { get; set; }
 
-        
         /// <summary>
         /// Returns a BottleSplitter with new stacks with a max size of 10 initialized through the construkter
         /// </summary>
@@ -35,13 +35,14 @@ namespace BottleSortWpf.Consumer
             else
                 return false;
         }
+
         /// <summary>
         /// Used to sort beer and soda bottles 
         /// </summary>
         public void SortBottles()
         {
             // Checks if the Bottle producer has any bottles in the buffer
-            while (BottleProducer.Bottles.Count > 1)
+            while (BottleProducer.Bottles.Count > 0)
             {
                 //Trys to grab the key object 
                 if (Monitor.TryEnter(BottleProducer.ProduceKey))
