@@ -2,54 +2,45 @@
 using BottleSortWpf.Producers;
 using FlaskeAutomaten.Interfaces;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace BottleSortWpf.Consumer
 {
-    public class BottleConsumer : ISleep
+    public class BottleConsumer
     {
-        public static Stack ConsumedBottles { get; set; } = new Stack();
+        public static Stack<Bottle> ConsumedBottles { get; set; } = new Stack<Bottle>();
         public static bool Running { get; set; }
 
         public void Consume()
         {
-            Thread.Sleep(1000);
             Random random = new Random();
-            while(Running)
+            while (Running)
             {
+                Thread.Sleep(500);
                 int ranNumber = random.Next(2);// random number 0 for beer 1 for soda
-                if (Monitor.TryEnter(BottleProducer.ProduceKey) && BottleSplitter.BufferControle())
+                try
                 {
                     Monitor.Enter(BottleProducer.ProduceKey);
-                    // Simulates costumers free choise
-                    if ((BottleTypes)ranNumber == BottleTypes.Beer && BottleSplitter.BeerBottles.Count > 0)
-                    {
-                        ConsumedBottles.Push(BottleSplitter.BeerBottles.Pop());
-                    }
-                    else if ((BottleTypes)ranNumber == BottleTypes.Soda && BottleSplitter.SodaBottles.Count > 0)
-                    {
-                        ConsumedBottles.Push(BottleSplitter.SodaBottles.Pop());
-                    }
-                    Monitor.PulseAll(BottleProducer.ProduceKey);
-                    Monitor.Exit(BottleProducer.ProduceKey);
                 }
-                else
+                catch (Exception)
                 {
-                    Sleep();
+                    Monitor.Wait(BottleProducer.ProduceKey);
                 }
-                Sleep();
-            }
-            
-        }
 
-        public void Sleep()
-        {
-            Monitor.Enter(BottleProducer.ProduceKey);
-            Monitor.PulseAll(BottleProducer.ProduceKey);
-            Monitor.Wait(BottleProducer.ProduceKey);
-            Thread.Sleep(1000);
-            Consume();
+
+                if ((BottleTypes)ranNumber == BottleTypes.Beer && BottleSplitter.BeerBottles.Count > 0)
+                {
+                    ConsumedBottles.Push(BottleSplitter.BeerBottles.Pop());
+                }
+                else if ((BottleTypes)ranNumber == BottleTypes.Soda && BottleSplitter.SodaBottles.Count > 0)
+                {
+                    ConsumedBottles.Push(BottleSplitter.SodaBottles.Pop());
+                }
+                Monitor.PulseAll(BottleProducer.ProduceKey);
+                Monitor.Exit(BottleProducer.ProduceKey);
+
+            }
         }
     }
 }

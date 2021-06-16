@@ -8,7 +8,7 @@ using System.Threading;
 namespace BottleSortWpf.Producers
 {
     // This class is responsible for creation of bottle objects
-    public class BottleProducer : ISleep
+    public class BottleProducer 
     {
         private int beerProducedCount = 0;
         private int sodaProducedCount = 0;
@@ -31,61 +31,41 @@ namespace BottleSortWpf.Producers
         {
             // Creates a instance of a bottle object
             Bottle bottle = null;
-            // A while to secure that the method only runs under these conditions  
-            // BufferControle has to return false 
-            // And bottles count has to be below 10
-            while (Running && Bottles.Count < 10)
+            
+            while (Running)
             {
-                // Tests if the thread can get the key object
-                if (Monitor.TryEnter(ProduceKey))
+                if (Bottles.Count < 10)
                 {
-                    // Trys to run the code if it catches an exeption it will write to console with the error message
                     try
                     {
-                        // Thread grabs the lock(key object)
                         Monitor.Enter(ProduceKey);
-
-                        if (sodaProducedCount > beerProducedCount)
-                        {
-                            bottle = Produce(BottleTypes.Beer);
-                            beerProducedCount++;
-                            Bottles.Push(bottle);
-                        }
-                        else
-                        {
-                            bottle = Produce(BottleTypes.Soda);
-                            sodaProducedCount++;
-                            Bottles.Push(bottle);
-                        }
-
-                        Thread.Sleep(10);
-
-                        // Signals the other threads 
-                        Monitor.PulseAll(ProduceKey);
-
-                        // Releases the key object 
-                        Monitor.Exit(ProduceKey);
-
-                        Thread.Sleep(1000);
-
-                    } // Catches the error 
-                    catch (Exception exception)
-                    {
-                        // Prints the error message
-                        Console.WriteLine(exception.Message);
                     }
-                    finally
+                    catch
                     {
-                        //controle release if the code throws an error
-                        Monitor.Exit(ProduceKey);
+                        Monitor.Wait(ProduceKey);
                     }
+
+                    if (sodaProducedCount > beerProducedCount)
+                    {
+                        bottle = Produce(BottleTypes.Beer);
+                        beerProducedCount++;
+                        Bottles.Push(bottle);
+                    }
+                    else
+                    {
+                        bottle = Produce(BottleTypes.Soda);
+                        sodaProducedCount++;
+                        Bottles.Push(bottle);
+                    }
+                    
+                    // Signals the other threads 
+                    Monitor.PulseAll(ProduceKey);
+                    // Releases the key object
+                    Monitor.Exit(ProduceKey);
                 }
-                else
-                {
-                    Sleep();
-                }
+
+                Thread.Sleep(300);
             }
-            Sleep();
         }
 
         /// <summary>
@@ -110,16 +90,5 @@ namespace BottleSortWpf.Producers
             }
         }
 
-        /// <summary>
-        /// This method sends the thread to wait for key object
-        /// returns to FillBuffer after wait
-        /// </summary>
-        public void Sleep()
-        {
-            Monitor.Enter(ProduceKey);
-            Monitor.PulseAll(ProduceKey);
-            Monitor.Wait(ProduceKey);
-            FillBuffer();
-        }
     }
 }

@@ -7,43 +7,62 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800" MinHeight="500" MinWidth="800" ResizeMode="NoResize">
     <Grid>
-
+        <!-- This defines the row in the grid -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- A new grid on row 0  -->
         <Grid Grid.Row="0">
+            <!-- This defines the columns -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!-- New button placed in grid column 0 -->
             <Grid Grid.Column="0">
                 <Button x:Name="Start" Width="250" Height="100" FontSize="22" Click="Start_Click">Start</Button>
             </Grid>
 
+            <!-- New button placed in grid column 0 -->
             <Grid Grid.Column="1">
                 <Button x:Name="Stop" Width="250" Height="100" FontSize="22" Click="Stop_Click">Stop</Button>
             </Grid>
         </Grid>
 
+        <!-- Makes a new grid for the canvas -->
         <Grid x:Name="animationGrid" Grid.Row="1" Grid.RowSpan="2">
             <Canvas x:Name="Screen">
+                <!-- Makes a new progress bar for the producer -->
                 <ProgressBar  x:Name="producerBar" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100"  Value="0"  Background="LawnGreen" Canvas.Left="56" Canvas.Top="107" ValueChanged="producerBar_ValueChanged"/>
                 <TextBlock x:Name="producerText" FontWeight="Bold" Text="Antal" Canvas.Left="57" Canvas.Top="91"></TextBlock>
                 <TextBlock Canvas.Left="30" Canvas.Top="212" Text="Bottle Producer"  TextWrapping="Wrap" RenderTransformOrigin="0.498,0.632"/>
 
+                <!-- ProgressBar for the splitter beer stack -->
                 <ProgressBar x:Name="splitterBarBeer" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="100" Value="0" Canvas.Left="423" Canvas.Top="107"  Background="YellowGreen" ValueChanged="splitterBarBeer_ValueChanged" />
                 <TextBlock Panel.ZIndex="1" x:Name="splitterSoda" FontWeight="Bold" Text="Antal" Canvas.Left="320" Canvas.Top="94"></TextBlock>
 
+                <!-- ProgressBar for splitter soda -->
                 <ProgressBar x:Name="splitterBarSoda" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100" Value="0" Canvas.Left="320" Canvas.Top="107"  Background="Brown" ValueChanged="splitterBarSoda_ValueChanged" />
                 <TextBlock  x:Name="splitterBeer" Text="Antal" FontWeight="Bold" Canvas.Left="423" Canvas.Top="94" RenderTransformOrigin="-0.427,0.708"></TextBlock>
                 <TextBlock Canvas.Left="351" Canvas.Top="207" Text="Bottle Splitter" TextWrapping="Wrap" RenderTransformOrigin="0.531,0.545"/>
 
-                <ProgressBar x:Name="consumerBar" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100"  Value="0"  Canvas.Left="712" Canvas.Top="107" Background="DarkCyan" ValueChanged="consumerBar_ValueChanged"/>
-                <TextBlock  x:Name="consumedBottles" Panel.ZIndex="1" FontWeight="Bold" Text="Antal" Canvas.Left="712" Canvas.Top="91"></TextBlock>
-                <TextBlock Canvas.Left="683" Canvas.Top="212" Text="Bottle Consumer" TextWrapping="Wrap" RenderTransformOrigin="0.525,0.482"/>
+                <!-- ProgressBar for the consumer  -->
+                <ProgressBar x:Name="consumerBar" Orientation="Vertical" Height="100" Width="30"  Minimum="0" Maximum="100"  Value="0" Canvas.Left="683" Canvas.Top="107" Background="DarkCyan" ValueChanged="consumerBar_ValueChanged"/>
+                <TextBlock x:Name="bottleConsumed" Width="200" Text="Consumed:"  FontSize="16" Canvas.Left="573" Canvas.Bottom="152" RenderTransformOrigin="0.5,0.5" Canvas.Top="94">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90.043"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform></TextBlock>
+                <TextBlock  x:Name="consumedBottles" Panel.ZIndex="1" FontWeight="Bold" Text="Antal" Canvas.Left="683" Canvas.Top="94"></TextBlock>
+                <TextBlock Canvas.Left="654" Canvas.Top="212" Text="Bottle Consumer" TextWrapping="Wrap" RenderTransformOrigin="0.525,0.482"/>
 
             </Canvas>
         </Grid>

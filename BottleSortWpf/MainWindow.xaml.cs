@@ -31,7 +31,7 @@ namespace BottleSortWpf
         /// </summary>
         private void Update()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             UpdateProducer();
         }
 
@@ -200,6 +200,7 @@ namespace BottleSortWpf
             {
                 this.consumerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
                 this.consumedBottles.Text = Convert.ToString(BottleConsumer.ConsumedBottles.Count);
+                this.bottleConsumed.Text = $"Consumed: {BottleConsumer.ConsumedBottles.Peek().Type}";
             });
         }
     }

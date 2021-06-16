@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace BottleSortWpf.Consumer
 {
-    public class BottleSplitter : ISleep
+    public class BottleSplitter
     {
         public static Stack<Bottle> BeerBottles { get; set; }
         public static Stack<Bottle> SodaBottles { get; set; }
@@ -41,16 +41,27 @@ namespace BottleSortWpf.Consumer
         /// </summary>
         public void SortBottles()
         {
+            Thread.Sleep(100);
+            Bottle bottle = null;
             // Checks if the Bottle producer has any bottles in the buffer
-            while (Running && BottleProducer.Bottles.Count > 0)
+            while (Running)
             {
-                //Trys to grab the key object 
-                if (Monitor.TryEnter(BottleProducer.ProduceKey))
+                try
                 {
-                    // grabs the key object
                     Monitor.Enter(BottleProducer.ProduceKey);
+                }
+                catch
+                {
+                    Monitor.Wait(BottleProducer.ProduceKey);
+                }
+
+                if (BottleProducer.Bottles.Count > 0)
+                {
                     // takes the first bottle 
-                    Bottle bottle = BottleProducer.Bottles.Pop();
+                    bottle = BottleProducer.Bottles.Pop();
+                }
+                if (bottle != null)
+                {
                     // Checks if the bottle is a beer
                     if (bottle.Type == BottleTypes.Beer && BeerBottles.Count < 10)
                     {
@@ -63,27 +74,13 @@ namespace BottleSortWpf.Consumer
                         //Push the bottle to the soda bottle stack
                         SodaBottles.Push(bottle);
                     }
-                    // sleep to make the sumulation on work more realistic
-                    Thread.Sleep(300);
                     Monitor.PulseAll(BottleProducer.ProduceKey);
                     Monitor.Exit(BottleProducer.ProduceKey);
-                }
-                else
-                {
-                    Sleep();
-                }
 
-                Sleep();
+                    
+                    Thread.Sleep(500);
+                }
             }
-            Sleep();
-        }
-
-        public void Sleep()
-        {
-            Monitor.Enter(BottleProducer.ProduceKey);
-            Monitor.PulseAll(BottleProducer.ProduceKey);
-            Monitor.Wait(BottleProducer.ProduceKey);
-            SortBottles();
         }
     }
 }

@@ -12,12 +12,6 @@ namespace BottleSortWpf.Animation
     {
         private DoubleAnimation Animation { get; set; }
 
-        public void SetAnimation(int fromValue = 0, int toValue = 10)
-        {
-            Duration duration = new Duration(TimeSpan.FromSeconds(1000));
-            Animation = new DoubleAnimation(fromValue, toValue, duration);
-        }
-
         public DoubleAnimation GetAnimation()
         {
             return Animation;
