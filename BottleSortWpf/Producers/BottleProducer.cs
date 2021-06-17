@@ -38,7 +38,7 @@ namespace BottleSortWpf.Producers
                 {
                     try
                     {
-                        Monitor.Enter(ProduceKey);
+                       Monitor.Enter(ProduceKey);
                     }
                     catch
                     {
@@ -64,7 +64,7 @@ namespace BottleSortWpf.Producers
                     Monitor.Exit(ProduceKey);
                 }
 
-                Thread.Sleep(300);
+                Thread.Sleep(450);
             }
         }
 

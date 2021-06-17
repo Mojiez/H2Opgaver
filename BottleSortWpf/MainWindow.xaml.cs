@@ -15,6 +15,7 @@ namespace BottleSortWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+
         Animator animator = new Animator();
         BottleProducer producer = new BottleProducer();
         BottleConsumer consumer = new BottleConsumer();
@@ -31,7 +32,7 @@ namespace BottleSortWpf
         /// </summary>
         private void Update()
         {
-            Thread.Sleep(100);
+            Thread.Sleep(20);
             UpdateProducer();
         }
 
@@ -50,7 +51,7 @@ namespace BottleSortWpf
                     this.producerBar.Value = BottleProducer.Bottles.Count * 10;
                 });
 
-                Thread.Sleep(100);
+                
                 UpdateSplitter();
             }
         }
@@ -71,7 +72,7 @@ namespace BottleSortWpf
                     this.splitterBarSoda.Value = BottleSplitter.SodaBottles.Count * 10;
                 });
 
-                Thread.Sleep(100);
+                
                 UpdateConsumer();
             }
         }
@@ -84,10 +85,13 @@ namespace BottleSortWpf
         {
             while (BottleConsumer.Running)
             {
+                // Calls the ui thread aka main thread to set set value
                 Dispatcher.Invoke(() =>
                 {
+                    // sets the value on the ui
                     this.consumerBar.Value = BottleConsumer.ConsumedBottles.Count;
                 });
+                Thread.Sleep(10);
                 Update();
             }
         }
@@ -100,34 +104,29 @@ namespace BottleSortWpf
         /// <param name="e"></param>
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.Invoke(() =>
+            var thread = Thread.CurrentThread.Name;
+            new Thread(() =>
             {
-                new Thread(() =>
-                {
-                    BottleProducer.Running = true;
-                    producer.FillBuffer();
-                }).Start();
+                BottleProducer.Running = true;
+                producer.FillBuffer();
+            }).Start();
 
-                new Thread(() =>
-                {
-                    BottleSplitter.Running = true;
-                    splitter.SortBottles();
-                }).Start();
-
-                new Thread(() =>
-                {
-                    BottleConsumer.Running = true;
-                    consumer.Consume();
-                }).Start();
-            });
-
-            this.Dispatcher.Invoke(() =>
+            new Thread(() =>
             {
-                new Thread(() =>
-                {
-                    Update();
-                }).Start();
-            });
+                BottleSplitter.Running = true;
+                splitter.SortBottles();
+            }).Start();
+
+            new Thread(() =>
+            {
+                BottleConsumer.Running = true;
+                consumer.Consume();
+            }).Start();
+
+            new Thread(() =>
+            {
+                Update();
+            }).Start();
         }
 
         /// <summary>
@@ -144,6 +143,7 @@ namespace BottleSortWpf
         }
 
         /// <summary>
+        /// /// This method uses the Ui thread therefor no need for the Dispatcher
         /// This method runs on a valueChanged event
         /// Runs if the producerBar value changes
         /// </summary>
@@ -151,14 +151,16 @@ namespace BottleSortWpf
         /// <param name="e"></param>
         private void producerBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Dispatcher.Invoke(() =>
+            this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+            this.producerText.Text = Convert.ToString(BottleProducer.Bottles.Count);
+            if (BottleProducer.Bottles.Count != 0)
             {
-                this.producerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
-                this.producerText.Text = Convert.ToString(BottleProducer.Bottles.Count);
-            });
+                this.producerItem.Text = "Produced: " + BottleProducer.Bottles.Peek().Type;
+            }
         }
 
         /// <summary>
+        /// /// This method uses the Ui thread therefor no need for the Dispatcher
         /// This method runs on a valueChanged event
         /// Runs if the splitterBarBeer value changes
         /// </summary>
@@ -166,14 +168,12 @@ namespace BottleSortWpf
         /// <param name="e"></param>
         private void splitterBarBeer_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Dispatcher.Invoke(() =>
-            {
-                this.splitterBarBeer.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
-                this.splitterBeer.Text = Convert.ToString(BottleSplitter.BeerBottles.Count);
-            });
+            this.splitterBarBeer.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+            this.splitterBeer.Text = "Beer: " + Convert.ToString(BottleSplitter.BeerBottles.Count);
         }
 
         /// <summary>
+        /// /// This method uses the Ui thread therefor no need for the Dispatcher
         /// This method runs on a valueChanged event
         /// Runs if the splitterBarSoda value changes
         /// </summary>
@@ -181,14 +181,12 @@ namespace BottleSortWpf
         /// <param name="e"></param>
         private void splitterBarSoda_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Dispatcher.Invoke(() =>
-            {
-                this.splitterBarSoda.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
-                this.splitterSoda.Text = Convert.ToString(BottleSplitter.SodaBottles.Count);
-            });
+            this.splitterBarSoda.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+            this.splitterSoda.Text = "Soda: " + Convert.ToString(BottleSplitter.SodaBottles.Count);
         }
 
         /// <summary>
+        /// This method uses the Ui thread therefor no need for the Dispatcher
         /// This method runs on a valueChanged event
         /// Runs if the consumerBar value changes
         /// </summary>
@@ -196,12 +194,9 @@ namespace BottleSortWpf
         /// <param name="e"></param>
         private void consumerBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Dispatcher.Invoke(() =>
-            {
-                this.consumerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
-                this.consumedBottles.Text = Convert.ToString(BottleConsumer.ConsumedBottles.Count);
-                this.bottleConsumed.Text = $"Consumed: {BottleConsumer.ConsumedBottles.Peek().Type}";
-            });
+            this.consumerBar.BeginAnimation(ProgressBar.ValueProperty, animator.GetAnimation());
+            this.consumedBottles.Text = Convert.ToString(BottleConsumer.ConsumedBottles.Count);
+            this.bottleConsumed.Text = $"Beer Consumed: " + consumer.BeerCount + $" Soda Consumed: " + consumer.SodaCount;
         }
     }
 }

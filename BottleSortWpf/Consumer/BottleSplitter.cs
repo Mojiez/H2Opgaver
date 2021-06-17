@@ -78,7 +78,7 @@ namespace BottleSortWpf.Consumer
                     Monitor.Exit(BottleProducer.ProduceKey);
 
                     
-                    Thread.Sleep(500);
+                    Thread.Sleep(450);
                 }
             }
         }

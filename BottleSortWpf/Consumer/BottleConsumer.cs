@@ -11,7 +11,8 @@ namespace BottleSortWpf.Consumer
     {
         public static Stack<Bottle> ConsumedBottles { get; set; } = new Stack<Bottle>();
         public static bool Running { get; set; }
-
+        public int BeerCount { get; set; }
+        public int SodaCount { get; set; }
         public void Consume()
         {
             Random random = new Random();
@@ -28,13 +29,14 @@ namespace BottleSortWpf.Consumer
                     Monitor.Wait(BottleProducer.ProduceKey);
                 }
 
-
                 if ((BottleTypes)ranNumber == BottleTypes.Beer && BottleSplitter.BeerBottles.Count > 0)
                 {
+                    BeerCount++;
                     ConsumedBottles.Push(BottleSplitter.BeerBottles.Pop());
                 }
                 else if ((BottleTypes)ranNumber == BottleTypes.Soda && BottleSplitter.SodaBottles.Count > 0)
                 {
+                    SodaCount++;
                     ConsumedBottles.Push(BottleSplitter.SodaBottles.Pop());
                 }
                 Monitor.PulseAll(BottleProducer.ProduceKey);

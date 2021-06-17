@@ -69,9 +69,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BagageSorting_App", "Bagage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependency", "Dependency\Dependency.csproj", "{89339CC1-CD7D-40F5-9F22-16EBC0869881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BottleSortWpf", "BottleSortWpf\BottleSortWpf.csproj", "{733BAC0B-0681-40DF-BE02-678363625DA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BottleSortWpf", "BottleSortWpf\BottleSortWpf.csproj", "{733BAC0B-0681-40DF-BE02-678363625DA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressBarTest", "ProgressBarTest\ProgressBarTest.csproj", "{EFC583A4-7009-4D97-8B21-9C8D24044DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressBarTest", "ProgressBarTest\ProgressBarTest.csproj", "{EFC583A4-7009-4D97-8B21-9C8D24044DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayList", "ArrayList\ArrayList.csproj", "{B8911D1B-01D7-491F-8AC8-D37819A1B242}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,10 @@ Global
 		{EFC583A4-7009-4D97-8B21-9C8D24044DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFC583A4-7009-4D97-8B21-9C8D24044DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFC583A4-7009-4D97-8B21-9C8D24044DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8911D1B-01D7-491F-8AC8-D37819A1B242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8911D1B-01D7-491F-8AC8-D37819A1B242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8911D1B-01D7-491F-8AC8-D37819A1B242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8911D1B-01D7-491F-8AC8-D37819A1B242}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
